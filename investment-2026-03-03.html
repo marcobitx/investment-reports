@@ -40,7 +40,8 @@
 html { font-size: 16px; -webkit-text-size-adjust: 100%; }
 
 body {
-  background: var(--bg);
+  background: linear-gradient(160deg, #4a6080 0%, #2d4060 40%, #3a5070 70%, #283850 100%);
+  background-attachment: fixed;
   color: var(--text);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   line-height: 1.65;
@@ -106,7 +107,7 @@ body {
 .card:last-child { margin-bottom: 0; }
 .card { transition: transform 0.15s ease, box-shadow 0.15s ease; }
 .card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(60,35,5,0.18); }
-.card-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1.4; }
+.card-title { font-size: 14px; font-weight: 700; color: #1e3a6e; margin-bottom: 8px; line-height: 1.4; }
 .card-body { font-size: 14px; color: var(--text-2); line-height: 1.75; }
 .card-body strong { color: var(--text); font-weight: 600; }
 .source-tag { display: inline-block; font-size: 11px; color: var(--text-3); font-style: italic; margin-top: 8px; }
@@ -135,7 +136,7 @@ body {
   border: 1px solid var(--card-border);
 }
 .inst-info { flex: 1; min-width: 0; }
-.inst-name { font-size: 15px; font-weight: 700; color: var(--text); }
+.inst-name { font-size: 15px; font-weight: 700; color: #1e3a6e; }
 .inst-ticker { font-size: 12px; color: var(--purple); font-family: 'JetBrains Mono', monospace; font-weight: 500; }
 .verdict {
   display: inline-flex; align-items: center;
@@ -195,7 +196,7 @@ body {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 .hist-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(217,119,6,0.12); }
-.hist-card h3 { font-size: 14px; font-weight: 700; color: #92400e; margin-bottom: 8px; }
+.hist-card h3 { font-size: 14px; font-weight: 700; color: #78500a; margin-bottom: 8px; }
 .hist-card p { font-size: 13px; color: var(--text-2); line-height: 1.8; }
 .hs {
   display: inline;
@@ -227,7 +228,7 @@ body {
   text-align: center; padding: 28px var(--px);
   color: var(--text-3); font-size: 12px;
   border-top: 1px solid var(--card-border); margin-top: 32px; line-height: 1.8;
-  background: #304060;
+  background: #283850;
 }
 
 /* ── DESKTOP ── */
