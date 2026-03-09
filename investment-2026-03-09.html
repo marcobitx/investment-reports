@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investicinė Ataskaita — 2026-03-09</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:linear-gradient(160deg,#4a6080 0%,#2d4060 40%,#3a5070 70%,#283850 100%);background-attachment:fixed;color:#1c1510;min-height:100vh;padding:16px;font-size:15px;line-height:1.6}
+.container{max-width:680px;margin:0 auto}
+/* HEADER */
+.header{background:#1c1510;border-radius:16px;padding:28px 24px;margin-bottom:20px;text-align:center;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#f59e0b,#fbbf24,#f59e0b)}
+.header h1{color:#fff;font-size:22px;font-weight:700;margin-bottom:4px}
+.header .date{color:#f59e0b;font-size:14px;font-weight:600;letter-spacing:1px}
+.header .subtitle{color:#9ca3af;font-size:13px;margin-top:8px}
+/* ALERT BANNER */
+.alert-banner{background:linear-gradient(135deg,#dc2626,#b91c1c);border-radius:14px;padding:20px;margin-bottom:20px;color:#fff;text-align:center}
+.alert-banner .alert-icon{font-size:28px;margin-bottom:6px}
+.alert-banner h2{font-size:17px;font-weight:700;margin-bottom:6px}
+.alert-banner p{font-size:13px;opacity:0.92;line-height:1.5}
+/* METRICS ROW */
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+@media(min-width:600px){.metrics{grid-template-columns:repeat(4,1fr)}}
+.metric-card{background:#f0f4f9;border-radius:12px;padding:14px 12px;text-align:center;border:1px solid #c4d0e0;box-shadow:0 2px 8px rgba(30,45,80,0.14);transition:transform 0.15s ease,box-shadow 0.15s ease}
+.metric-card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(30,45,80,0.22)}
+.metric-card .label{font-size:11px;color:#5a4a35;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+.metric-card .value{font-size:20px;font-weight:700;margin:4px 0 2px}
+.metric-card .change{font-size:12px;font-weight:600}
+.up{color:#16a34a}.down{color:#dc2626}.neutral{color:#d97706}
+/* SECTION */
+.section{margin-bottom:20px}
+.section-title{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:700;color:#fff;margin-bottom:12px;padding:0 4px}
+.section-title span{font-size:20px}
+/* CARD */
+.card{background:#f0f4f9;border-radius:14px;padding:18px;margin-bottom:12px;border:1px solid #c4d0e0;box-shadow:0 2px 8px rgba(30,45,80,0.14);transition:transform 0.15s ease,box-shadow 0.15s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(30,45,80,0.22)}
+.card-warm{background:#eaf0f8}
+.card h3{color:#1e3a6e;font-size:15px;font-weight:700;margin-bottom:8px}
+.card p{font-size:14px;line-height:1.65;margin-bottom:8px}
+.card p:last-child{margin-bottom:0}
+.source{font-size:11px;color:#9a8570;font-style:italic}
+/* STOCK CARD */
+.stock-card{background:#f0f4f9;border-radius:14px;padding:18px;margin-bottom:14px;border:1px solid #c4d0e0;box-shadow:0 2px 8px rgba(30,45,80,0.14);transition:transform 0.15s ease,box-shadow 0.15s ease}
+.stock-card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(30,45,80,0.22)}
+.stock-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.stock-logo{width:36px;height:36px;border-radius:9px;object-fit:contain;background:#fff;flex-shrink:0}
+.stock-info h3{color:#1e3a6e;font-size:15px;font-weight:700;margin:0}
+.stock-info .ticker{font-size:12px;color:#5a4a35;font-weight:600}
+.stock-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+@media(min-width:600px){.stock-meta{grid-template-columns:repeat(4,1fr)}}
+.stock-meta-item{background:#eaf0f8;border-radius:8px;padding:8px 10px;text-align:center}
+.stock-meta-item .meta-label{font-size:10px;color:#5a4a35;text-transform:uppercase;font-weight:600}
+.stock-meta-item .meta-value{font-size:14px;font-weight:700;color:#1e3a6e}
+.risk-bar{display:flex;gap:4px;align-items:center;margin:8px 0}
+.risk-dot{width:10px;height:10px;border-radius:50%;background:#c4d0e0}
+.risk-dot.active-green{background:#16a34a}
+.risk-dot.active-yellow{background:#f59e0b}
+.risk-dot.active-red{background:#dc2626}
+.risk-label{font-size:11px;color:#5a4a35;margin-left:6px;font-weight:600}
+.stock-analysis{font-size:13px;line-height:1.6;color:#1c1510;margin-bottom:8px}
+.stock-analysis strong{color:#1e3a6e}
+.chart-container{margin-top:10px;border-radius:8px;overflow:hidden}
+.chart-container img{width:100%;height:auto;display:block}
+/* AVOID CARD */
+.avoid-card{background:#fff8f8;border-radius:14px;padding:18px;margin-bottom:14px;border:1px solid #fecaca;box-shadow:0 2px 8px rgba(30,45,80,0.14);transition:transform 0.15s ease,box-shadow 0.15s ease}
+.avoid-card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(30,45,80,0.22)}
+.avoid-card h3{color:#dc2626;font-size:15px;font-weight:700;margin-bottom:6px}
+.avoid-card .avoid-reason{font-size:13px;color:#1c1510;line-height:1.6}
+/* HISTORY CARD */
+.history-card{background:#fffbeb;border-radius:14px;padding:18px;margin-bottom:12px;border:1px solid #fde68a;box-shadow:0 2px 8px rgba(30,45,80,0.14);transition:transform 0.15s ease,box-shadow 0.15s ease}
+.history-card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(30,45,80,0.22)}
+.history-card h3{color:#1e3a6e;font-size:14px;font-weight:700;margin-bottom:6px}
+.history-card p{font-size:13px;line-height:1.6}
+.history-year{display:inline-block;background:#f59e0b;color:#1c1510;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;margin-bottom:6px}
+/* OPPORTUNITY/THREAT */
+.opp-grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:600px){.opp-grid{grid-template-columns:1fr 1fr}}
+.opp-card{border-radius:14px;padding:16px;border:1px solid #c4d0e0;box-shadow:0 2px 8px rgba(30,45,80,0.14)}
+.opp-card.green{background:#f0fdf4;border-color:#86efac}
+.opp-card.red{background:#fff8f8;border-color:#fecaca}
+.opp-card h4{font-size:14px;font-weight:700;margin-bottom:6px}
+.opp-card.green h4{color:#16a34a}
+.opp-card.red h4{color:#dc2626}
+.opp-card ul{list-style:none;padding:0}
+.opp-card ul li{font-size:13px;padding:4px 0;padding-left:18px;position:relative;line-height:1.5}
+.opp-card ul li::before{content:'';position:absolute;left:0;top:11px;width:8px;height:8px;border-radius:50%}
+.opp-card.green ul li::before{background:#16a34a}
+.opp-card.red ul li::before{background:#dc2626}
+/* FOOTER */
+.footer{background:#283850;border-radius:14px;padding:20px;margin-top:24px;text-align:center}
+.footer p{color:#9ca3af;font-size:11px;line-height:1.6}
+.footer .disclaimer{color:#6b7280;font-size:10px;margin-top:8px}
+/* TICKER STRIP */
+.ticker-strip{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:20px}
+@media(min-width:600px){.ticker-strip{grid-template-columns:repeat(4,1fr)}}
+.tick{background:#f0f4f9;border-radius:10px;padding:10px;text-align:center;border:1px solid #c4d0e0}
+.tick .sym{font-size:12px;font-weight:700;color:#1e3a6e}
+.tick .price{font-size:16px;font-weight:700}
+.tick .chg{font-size:12px;font-weight:600}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HEADER -->
+<div class="header">
+<h1>⚡ INVESTICINĖ ATASKAITA</h1>
+<div class="date">2026 KOVO 9, PIRMADIENIS</div>
+<div class="subtitle">Kasdienis rinkų žvalgybos pranešimas · marco_git</div>
+</div>
+
+<!-- CRISIS ALERT -->
+<div class="alert-banner">
+<div class="alert-icon">🚨</div>
+<h2>RINKŲ KRIZĖ: Nafta viršijo $116/brl, globalūs indeksai krenta</h2>
+<p>US-Izraelio konfliktas su Iranu eskaluojasi antrą savaitę. Ormūzo sąsiaurio eismas sustabdytas. Brent nafta +25-29%, Dow ateities sandoriai −1000+ taškų. Pietų Korėjos biržoje suveikė circuit breakers. Hedge fondai didina short pozicijas sparčiausiu tempu per 5 metus.</p>
+</div>
+
+<!-- KEY METRICS -->
+<div class="metrics">
+<div class="metric-card">
+<div class="label">S&P 500</div>
+<div class="value down">6,740</div>
+<div class="change down">▼ −1.33% (kovo 6)</div>
+</div>
+<div class="metric-card">
+<div class="label">Brent Nafta</div>
+<div class="value down">$116.37</div>
+<div class="change down">▲ +25% 🔥</div>
+</div>
+<div class="metric-card">
+<div class="label">Dow Futures</div>
+<div class="value down">−1000+</div>
+<div class="change down">▼ −2.5%</div>
+</div>
+<div class="metric-card">
+<div class="label">Nikkei 225</div>
+<div class="value down">Krenta</div>
+<div class="change down">▼ −7%</div>
+</div>
+</div>
+
+<!-- TICKER STRIP -->
+<div class="ticker-strip">
+<div class="tick"><div class="sym">WTI</div><div class="price down">$116.11</div><div class="chg down">▲ +26%</div></div>
+<div class="tick"><div class="sym">KOSPI</div><div class="price down">Krenta</div><div class="chg down">▼ −8%</div></div>
+<div class="tick"><div class="sym">NASDAQ F.</div><div class="price down">Krenta</div><div class="chg down">▼ −2.7%</div></div>
+<div class="tick"><div class="sym">EUR/USD</div><div class="price neutral">Silpnėja</div><div class="chg neutral">$ stiprėja</div></div>
+</div>
+
+<!-- 1. SVARBIAUSIOS NAUJIENOS -->
+<div class="section">
+<div class="section-title"><span>🌍</span> SVARBIAUSIOS NAUJIENOS</div>
+
+<div class="card">
+<h3>🔴 Nafta viršija $116 — Ormūzo sąsiauris paralyžiuotas</h3>
+<p>Brent nafta šovė iki <strong>$119.50/brl</strong> (+29%), WTI pasiekė <strong>$118.86/brl</strong> (+31%) — aukščiausios kainos nuo 2022 m. US-Izraelio karinė operacija prieš Iraną antrą savaitę blokuoja Ormūzo sąsiaurį, per kurį keliauja ~20% pasaulio naftos tiekimo. Didieji gamintojai mažina gavybą.</p>
+<p class="source">Šaltiniai: Reuters, Bloomberg, Al Jazeera, Investing.com</p>
+</div>
+
+<div class="card">
+<h3>🔴 Globalūs indeksai griūva — circuit breakers Pietų Korėjoje</h3>
+<p>Japonijos Nikkei 225 krito <strong>−7%</strong>, Pietų Korėjos KOSPI — <strong>−8%</strong> (circuit breakers suveikė antrą kartą šį mėnesį). Dow ateities sandoriai smuko <strong>−1000+ taškų</strong> (−2.5%), Nasdaq-100 ateities — <strong>−2.7%</strong>. Hong Kong Hang Seng ir Australijos ASX 200 taip pat smuko.</p>
+<p class="source">Šaltiniai: Morningstar/MarketWatch, Hindustan Times, SwissInfo</p>
+</div>
+
+<div class="card">
+<h3>🟡 Infliacija kyla — FED politika komplikuojasi</h3>
+<p>TVF skaičiuoja: <strong>+10% naftos kaina = +0.4% infliacija ir −0.15% globalaus BVP</strong>. JPMorgan vyriausiasis ekonomistas Bruce Kasman perspėja: „Jei konfliktas tęsis, nafta gali viršyti $120 — tai keltų globalios recesijos riziką." JAV doleris stiprėja kaip saugumo prieglobstis, valstybių obligacijos krenta.</p>
+<p class="source">Šaltiniai: JPMorgan Research, IMF, Bloomberg</p>
+</div>
+
+<div class="card">
+<h3>🟡 Hedge fondai didina short pozicijas — rinkos crash tikimybė kyla</h3>
+<p>Goldman Sachs duomenimis, hedge fondai savaitę iki kovo 6 d. padidino <strong>short ETF pozicijas +8.3%</strong> — sparčiausiu tempu per 5 metus. Strategas Ed Yardeni padidino rinkos crash tikimybę nuo <strong>20% iki 35%</strong>. Buffett indikatorius ir Shiller CAPE rodo pervertintą rinką.</p>
+<p class="source">Šaltiniai: Goldman Sachs, Nasdaq, Motley Fool UK</p>
+</div>
+
+<div class="card">
+<h3>🟢 Aviacija smuks, energetika — augs</h3>
+<p>Azijos aviakompanijų akcijos nukrito <strong>−4% iki −10%</strong> dėl kuro kainų ir oro erdvės ribojimų. Energetikos sektorius — vienintelis žalias: naftos bendrovių akcijos kyla. Chevron, ExxonMobil, ConocoPhillips generuos rekordinį laisvą pinigų srautą esant $100+ naftai.</p>
+<p class="source">Šaltiniai: Investing.com, Motley Fool, Barchart</p>
+</div>
+</div>
+
+<!-- 2. ANALITIKŲ PROJEKCIJOS -->
+<div class="section">
+<div class="section-title"><span>📊</span> ANALITIKŲ PROJEKCIJOS</div>
+
+<div class="card card-warm">
+<h3><img src="https://logo.clearbit.com/goldmansachs.com" style="width:20px;height:20px;border-radius:4px;vertical-align:middle;margin-right:6px">Goldman Sachs</h3>
+<p><strong>S&P 500 metų pabaigos tikslas: 7,600</strong> (~+11%). Globalus BVP augimas 2.8% (konsensusas 2.5%). JAV ekonomika augs 2.6%. Rekomenduoja: Russell 2000, statybos, AI kompanijos. <strong>NAUJIENA:</strong> padidino TTF dujų kainos prognozę iki €55/MWh (buvo €36) dėl Kataro LNG tiekimo trikdžių.</p>
+<p class="source">Šaltinis: goldmansachs.com/insights/outlooks/2026, Boereport</p>
+</div>
+
+<div class="card card-warm">
+<h3><img src="https://logo.clearbit.com/jpmorgan.com" style="width:20px;height:20px;border-radius:4px;vertical-align:middle;margin-right:6px">JPMorgan</h3>
+<p><strong>Recesijos tikimybė: 35%</strong>. Pozityvus požiūris į globalias akcijas — prognozuoja dviženklius augimus. Infliacija liks „lipni". Dauguma centrinių bankų sustabdys/baigs palūkanų mažinimo ciklus H1 2026. <strong>Bearish USD, bullish EUR.</strong></p>
+<p class="source">Šaltinis: jpmorgan.com/insights, JPM Research</p>
+</div>
+
+<div class="card card-warm">
+<h3><img src="https://logo.clearbit.com/morganstanley.com" style="width:20px;height:20px;border-radius:4px;vertical-align:middle;margin-right:6px">Morgan Stanley</h3>
+<p><strong>4 pagrindinės temos:</strong> AI/Tech difuzija, Energijos ateitis, Daugiapolinė pasaulis, Socialiniai pokyčiai. Prognozuoja, kad US LLM modeliai H1 2026 stipriai pažengę, Kinija atsiliks. Compute paklausa viršys pasiūlą. <strong>H2 2026: pirmieji defliacijos ženklai dėl „Transformative AI".</strong></p>
+<p class="source">Šaltinis: Investing.com, Morgan Stanley Research</p>
+</div>
+
+<div class="card card-warm">
+<h3><img src="https://logo.clearbit.com/citi.com" style="width:20px;height:20px;border-radius:4px;vertical-align:middle;margin-right:6px">Citi / UBS / Barclays</h3>
+<p><strong>Citi:</strong> WDC „Buy" su $325-335 tikslu — AI storage bumas. <strong>UBS:</strong> NVDA tikslas $345-475 priklausomai nuo analitiko. <strong>Barclays:</strong> AAPL „Underweight" $248 — konservatyvus požiūris. Visi trys atsargiai vertina artimąjį laikotarpį dėl geopolitinės rizikos.</p>
+<p class="source">Šaltiniai: Benzinga, MarketBeat, TipRanks</p>
+</div>
+</div>
+
+<!-- 3. TOP 5 Į KĄ INVESTUOTI -->
+<div class="section">
+<div class="section-title"><span>🏆</span> TOP 5 — Į KĄ INVESTUOTI</div>
+
+<!-- #1 CHEVRON -->
+<div class="stock-card">
+<div class="stock-header">
+<img src="https://logo.clearbit.com/chevron.com" class="stock-logo" alt="CVX">
+<div class="stock-info">
+<h3>1. Chevron Corporation</h3>
+<div class="ticker">NYSE: CVX · Energetika</div>
+</div>
+</div>
+<div class="stock-meta">
+<div class="stock-meta-item"><div class="meta-label">Kaina</div><div class="meta-value">~$178</div></div>
+<div class="stock-meta-item"><div class="meta-label">Tikslas</div><div class="meta-value up">$200+</div></div>
+<div class="stock-meta-item"><div class="meta-label">Reitingas</div><div class="meta-value">Buy</div></div>
+<div class="stock-meta-item"><div class="meta-label">Dividendai</div><div class="meta-value up">~3.8%</div></div>
+</div>
+<div class="risk-bar">
+<div class="risk-dot active-green"></div>
+<div class="risk-dot active-green"></div>
+<div class="risk-dot active-yellow"></div>
+<div class="risk-dot"></div>
+<div class="risk-dot"></div>
+<div class="risk-label">Rizika: 2.5/5 (Vidutinė-žema)</div>
+</div>
+<div class="stock-analysis">
+<p><strong>📐 Techninė:</strong> Naftos kainų šuolis iki $116+ tiesiogiai didina Chevron pajamas ir FCF. Energetikos sektorius — vienintelis žalias šiandien. Kaina turi stiprų palaikymą ties $160.</p>
+<p><strong>📊 Fundamentinė:</strong> Generuoja teigiamą FCF net prie $50/brl Brent. Prie $116 — rekordinis pinigų srautas. Nuosekliai didina dividendus 37+ metus iš eilės. Diversifikuota geografiškai. Atspari geopolitinėms krizėms kaip tiekėjas.</p>
+</div>
+<div class="chart-container">
+<img src="https://finviz.com/chart.ashx?t=CVX&ty=c&ta=1&p=d&s=l" alt="CVX chart">
+</div>
+<p class="source">Šaltiniai: Motley Fool, Barchart, Nasdaq</p>
+</div>
+
+<!-- #2 NVIDIA -->
+<div class="stock-card">
+<div class="stock-header">
+<img src="https://logo.clearbit.com/nvidia.com" class="stock-logo" alt="NVDA">
+<div class="stock-info">
+<h3>2. Nvidia Corporation</h3>
+<div class="ticker">NASDAQ: NVDA · Technologijos / AI</div>
+</div>
+</div>
+<div class="stock-meta">
+<div class="stock-meta-item"><div class="meta-label">Kaina</div><div class="meta-value">~$178</div></div>
+<div class="stock-meta-item"><div class="meta-label">Tikslas (med.)</div><div class="meta-value up">$275</div></div>
+<div class="stock-meta-item"><div class="meta-label">Reitingas</div><div class="meta-value">Strong Buy</div></div>
+<div class="stock-meta-item"><div class="meta-label">Upside</div><div class="meta-value up">+54%</div></div>
+</div>
+<div class="risk-bar">
+<div class="risk-dot active-green"></div>
+<div class="risk-dot active-green"></div>
+<div class="risk-dot active-yellow"></div>
+<div class="risk-dot active-yellow"></div>
+<div class="risk-dot"></div>
+<div class="risk-label">Rizika: 3/5 (Vidutinė)</div>
+</div>
+<div class="stock-analysis">
+<p><strong>📐 Techninė:</strong> Korekcija nuo ATH suteikia pirkimo galimybę. Morningstar vertina kaip <strong>undervalued</strong> (fair value $240). 53 analitikų mediana — $275. Tigress Financial kelia tikslą iki $360.</p>
+<p><strong>📊 Fundamentinė:</strong> Hyperscaler capex 2026 prognozuojamas $650 mlrd. AI infrastruktūros paklausa viršija pasiūlą (Morgan Stanley). Pajamų prognozė ~$405 mlrd. GPU monopolija duomenų centruose išlieka.</p>
+</div>
+<div class="chart-container">
+<img src="https://finviz.com/chart.ashx?t=NVDA&ty=c&ta=1&p=d&s=l" alt="NVDA chart">
+</div>
+<p class="source">Šaltiniai: Morningstar, Tigress Financial, Wedbush, B of A Securities</p>
+</div>
+
+<!-- #3 MICRON -->
+<div class="stock-card">
+<div class="stock-header">
+<img src="https://logo.clearbit.com/micron.com" class="stock-logo" alt="MU">
+<div class="stock-info">
+<h3>3. Micron Technology</h3>
+<div class="ticker">NASDAQ: MU · Puslaidininkiai / Atmintis</div>
+</div>
+</div>
+<div class="stock-meta">
+<div class="stock-meta-item"><div class="meta-label">Kaina</div><div class="meta-value">~$118</div></div>
+<div class="stock-meta-item"><div class="meta-label">Tikslas (vid.)</div><div class="meta-value up">$358</div></div>
+<div class="stock-meta-item"><div class="meta-label">Reitingas</div><div class="meta-value">Buy (89%)</div></div>
+<div class="stock-meta-item"><div class="meta-label">Upside</div><div class="meta-value up">+203%</div></div>
+</div>
+<div class="risk-bar">
+<div class="risk-dot active-green"></div>
+<div class="risk-dot active-green"></div>
+<div class="risk-dot active-yellow"></div>
+<div class="risk-dot active-yellow"></div>
+<div class="risk-dot"></div>
+<div class="risk-label">Rizika: 3/5 (Vidutinė)</div>
+</div>
+<div class="stock-analysis">
+<p><strong>📐 Techninė:</strong> Aletheia Capital kelia tikslą iki <strong>$650</strong> — aukščiausias Wall Street. Stifel — $550, UBS — $475. Q2 FY26 ataskaita kovo 18 d. — potencialus katalizatorius. Pajamų augimas +131% prognozuojamas.</p>
+<p><strong>📊 Fundamentinė:</strong> AI atminties „superciklas" — HBM (High-Bandwidth Memory) paklausa eksploduoja. Duomenų centrai ir AI treniravimas reikalauja vis daugiau atminties. Pasiūla bus ribota 2026-2027. Forbes ir Zacks reitinguoja kaip #1 pasirinkimą kovui.</p>
+</div>
+<div class="chart-container">
+<img src="https://finviz.com/chart.ashx?t=MU&ty=c&ta=1&p=d&s=l" alt="MU chart">
+</div>
+<p class="source">Šaltiniai: Forbes, Aletheia Capital, Stifel, UBS, TipRanks</p>
+</div>
+
+<!-- #4 ALPHABET -->
+<div class="stock-card">
+<div class="stock-header">
+<img src="https://logo.clearbit.com/google.com" class="stock-logo" alt="GOOG">
+<div class="stock-info">
+<h3>4. Alphabet Inc.</h3>
+<div class="ticker">NASDAQ: GOOG · Technologijos / Cloud / AI</div>
+</div>
+</div>
+<div class="stock-meta">
+<div class="stock-meta-item"><div class="meta-label">Kaina</div><div class="meta-value">~$298</div></div>
+<div class="stock-meta-item"><div class="meta-label">Tikslas (vid.)</div><div class="meta-value up">$344</div></div>
+<div class="stock-meta-item"><div class="meta-label">Reitingas</div><div class="meta-value">Strong Buy</div></div>
+<div class="stock-meta-item"><div class="meta-label">Upside</div><div class="meta-value up">+15%</div></div>
+</div>
+<div class="risk-bar">
+<div class="risk-dot active-green"></div>
+<div class="risk-dot active-green"></div>
+<div class="risk-dot active-yellow"></div>
+<div class="risk-dot"></div>
+<div class="risk-dot"></div>
+<div class="risk-label">Rizika: 2.5/5 (Vidutinė-žema)</div>
+</div>
+<div class="stock-analysis">
+<p><strong>📐 Techninė:</strong> 41 analitikų vidutinis tikslas $344, JPMorgan — $395, Scotiabank — $400, Futu Bull aukščiausias — $450. „Strong Buy" konsensusas su 90%+ Buy/Strong Buy.</p>
+<p><strong>📊 Fundamentinė:</strong> Google Cloud prognozuojamas 4x augimas iki 2030. Waymo (autonominės mašinos) — ankstyvos stadijos, bet didelis potencialas. AI integracija į visus produktus. Stabilūs pinigų srautai iš reklamos verslo.</p>
+</div>
+<div class="chart-container">
+<img src="https://finviz.com/chart.ashx?t=GOOG&ty=c&ta=1&p=d&s=l" alt="GOOG chart">
+</div>
+<p class="source">Šaltiniai: MarketBeat, JPMorgan, Scotiabank, Forbes</p>
+</div>
+
+<!-- #5 WESTERN DIGITAL -->
+<div class="stock-card">
+<div class="stock-header">
+<img src="https://logo.clearbit.com/westerndigital.com" class="stock-logo" alt="WDC">
+<div class="stock-info">
+<h3>5. Western Digital</h3>
+<div class="ticker">NASDAQ: WDC · Duomenų saugykla / AI</div>
+</div>
+</div>
+<div class="stock-meta">
+<div class="stock-meta-item"><div class="meta-label">Kaina</div><div class="meta-value">~$245</div></div>
+<div class="stock-meta-item"><div class="meta-label">Tikslas (med.)</div><div class="meta-value up">$325</div></div>
+<div class="stock-meta-item"><div class="meta-label">Reitingas</div><div class="meta-value">Strong Buy</div></div>
+<div class="stock-meta-item"><div class="meta-label">Upside</div><div class="meta-value up">+33%</div></div>
+</div>
+<div class="risk-bar">
+<div class="risk-dot active-green"></div>
+<div class="risk-dot active-green"></div>
+<div class="risk-dot active-yellow"></div>
+<div class="risk-dot"></div>
+<div class="risk-dot"></div>
+<div class="risk-label">Rizika: 2.5/5 (Vidutinė-žema)</div>
+</div>
+<div class="stock-analysis">
+<p><strong>📐 Techninė:</strong> +8% pakilimas kovo 4 d. po pullback — investuotojai grįžta prie AI storage temos. Cantor Fitzgerald tikslas $420, Mizuho $340, Rosenblatt $340, Barclays $325. 80% analitikų — Buy/Strong Buy.</p>
+<p><strong>📊 Fundamentinė:</strong> Cloud pajamos $2.7 mlrd (89% visų pajamų), +27.5% YoY. UltraSMR technologija — nearline portfelis viršija 50%. AI duomenų centrų storage paklausa eksponenciškai auga. ASP per TB kyla.</p>
+</div>
+<div class="chart-container">
+<img src="https://finviz.com/chart.ashx?t=WDC&ty=c&ta=1&p=d&s=l" alt="WDC chart">
+</div>
+<p class="source">Šaltiniai: Cantor Fitzgerald, Mizuho, Citigroup, Benzinga</p>
+</div>
+</div>
+
+<!-- 4. TOP 5 KUR VENGTI -->
+<div class="section">
+<div class="section-title"><span>⛔</span> TOP 5 — KUR VENGTI</div>
+
+<div class="avoid-card">
+<div class="stock-header">
+<img src="https://logo.clearbit.com/tesla.com" class="stock-logo" alt="TSLA">
+<div class="stock-info">
+<h3>1. Tesla (TSLA) — $390 · P/E: 197x</h3>
+<div class="ticker">PERVERTINTA · Konsensusas: HOLD</div>
+</div>
+</div>
+<div class="avoid-reason">
+<p><strong>Kodėl vengti:</strong> P/E 197x (pramonės vidurkis 15.6x). P/S 15.7x (vidurkis 0.58x). DCF modelis rodo <strong>160%+ pervertinimą</strong>. Automobilių pajamos krenta, marginai mažėja (−31% pelno augimas). EV konkurencija intensyvėja. Konsensusas „Hold" — analitikai pasidalinę perpus.</p>
+</div>
+<p class="source">Šaltiniai: SimplyWallSt, Invezz, Zacks, Public.com</p>
+</div>
+
+<div class="avoid-card">
+<div class="stock-header">
+<img src="https://logo.clearbit.com/lucidmotors.com" class="stock-logo" alt="LCID">
+<div class="stock-info">
+<h3>2. Lucid Group (LCID) — Reverse split signalas</h3>
+<div class="ticker">STRONG SELL · Gamybos tikslai neįvykdomi</div>
+</div>
+</div>
+<div class="avoid-reason">
+<p><strong>Kodėl vengti:</strong> 2025 m. atliktas <strong>1:10 reverse stock split</strong> — klasikinis pavojaus ženklas. Nuolat nevykdo gamybos prognozių. Apyvartinis kapitalas tirpsta. Net su dideliu Saudi finansavimu — fundamentaliai silpna.</p>
+</div>
+<p class="source">Šaltiniai: Motley Fool, FinViz</p>
+</div>
+
+<div class="avoid-card">
+<div class="stock-header">
+<img src="https://logo.clearbit.com/nike.com" class="stock-logo" alt="NKE">
+<div class="stock-info">
+<h3>3. Nike (NKE) — Blogiausias kovui istoriškai</h3>
+<div class="ticker">AVOID · Vidutinis nuostolis: −4.2% kovą</div>
+</div>
+</div>
+<div class="avoid-reason">
+<p><strong>Kodėl vengti:</strong> Per pastarąjį dešimtmetį Nike yra <strong>blogiausiai kodue performinantis S&P 500 narys</strong> — vidutiniškai −4.2% su tik 10% sėkmės dažniu. Vartotojų nuotaikos blogėja dėl infliacijos ir naftos kainų.</p>
+</div>
+<p class="source">Šaltinis: FinViz News</p>
+</div>
+
+<div class="avoid-card">
+<div class="stock-header">
+<img src="https://logo.clearbit.com/boeing.com" class="stock-logo" alt="BA">
+<div class="stock-info">
+<h3>4. Boeing (BA) — Operacinės problemos + kuro kaina</h3>
+<div class="ticker">AVOID · Reputacijos ir finansiniai iššūkiai</div>
+</div>
+</div>
+<div class="avoid-reason">
+<p><strong>Kodėl vengti:</strong> Aviacijos sektorius smunka dėl naftos kainų šuolio. Boeing jau turi <strong>operacinių ir reputacinių problemų</strong>. Azijos aviakompanijų akcijos krito −4% iki −10%. Kuro kaštai tiesiogiai veikia užsakymų perspektyvas.</p>
+</div>
+<p class="source">Šaltiniai: Investing.com, FinViz</p>
+</div>
+
+<div class="avoid-card">
+<div class="stock-header">
+<img src="https://logo.clearbit.com/groceryoutlet.com" class="stock-logo" alt="GO">
+<div class="stock-info">
+<h3>5. Grocery Outlet (GO) — MS nukėlė tikslą iki $7</h3>
+<div class="ticker">SELL · EPS miss + silpnas FY2026 gidas</div>
+</div>
+</div>
+<div class="avoid-reason">
+<p><strong>Kodėl vengti:</strong> Morgan Stanley kovo pradžioje <strong>nukėlė tikslą nuo $11 iki $7</strong> (−36%). EPS pralenkė lūkesčius negatyviai, FY2026 prognozė silpna. „Equal weight" → faktiškai pesimistinis signalas iš didžiosios institucijos.</p>
+</div>
+<p class="source">Šaltinis: MarketBeat, Morgan Stanley</p>
+</div>
+</div>
+
+<!-- 5. ISTORINĖS PARALELĖS -->
+<div class="section">
+<div class="section-title"><span>📜</span> ISTORINĖS PARALELĖS — Kovo 9 d.</div>
+
+<div class="history-card">
+<div class="history-year">🔙 Prieš 17 metų · 2009</div>
+<h3>Rinkos dugnas — istorinio bulių runo pradžia</h3>
+<p>Kovo 9, 2009 — <strong>S&P 500 pasiekė dugną ties 676.53</strong>, Dow — 6,547. Tai buvo 17 mėnesių meškų rinkos pabaiga (−50% nuo viršūnės). Per sekančius 10 metų S&P 500 <strong>pakilo 305%</strong>, Nasdaq — 360%. Pamoka: <strong>didžiausios panikos momentai dažnai yra geriausi pirkimo taškai.</strong></p>
+<p class="source">Šaltiniai: TheStreet, Forbes, BeginToInvest</p>
+</div>
+
+<div class="history-card">
+<div class="history-year">🔙 Prieš 30 metų · 1996</div>
+<h3>Obligacijų rinkos krizė ir akcijų išpardavimas</h3>
+<p>Kovo 9, 1996 — stipresnis nei tikėtasi darbo rinkos reportas sukėlė <strong>obligacijų pajamingumo šuolį</strong> (blogiausias per 20 m.). Dow krito <strong>−171 taškų iki 5,470</strong>. NYSE suveikė circuit breakers. <strong>Paralelė su šiandien:</strong> staigus šokas sukelia grandininę reakciją — kaip ir dabar su nafta.</p>
+<p class="source">Šaltinis: Los Angeles Times archyvas</p>
+</div>
+
+<div class="history-card">
+<div class="history-year">🔙 Prieš 10 metų · 2016</div>
+<h3>Kinijos prekybos šokas — žaliavų kainų griūtis</h3>
+<p>Kovo 9, 2016 — Kinijos eksportas smuko <strong>daugiausiai per 6 metus</strong>. Varis krito sparčiausiai per 4 mėn. Naftos kainos slėgė rinkas. <strong>Paralelė:</strong> tuomet baimės dėl Kinijos; dabar — Artimieji Rytai. Abiem atvejais žaliavų kainos buvo katalizatorius.</p>
+<p class="source">Šaltinis: IndailyAU, Wikipedia (2015-16 selloff)</p>
+</div>
+
+<div class="history-card">
+<div class="history-year">🔙 Prieš 20 metų · 2006</div>
+<h3>Google įstojo į S&P 500 — naujosios ekonomikos era</h3>
+<p>Kovo 2006 — Google paskelbta S&P 500 nare (pakeitė Burlington Resources). Akcijos šovė <strong>+9% after-hours</strong>. FED kėlė palūkanas 15-ą kartą iš eilės (iki 4.75%). <strong>Paralelė:</strong> technologijų lyderiai toliau dominuoja indeksus, kaip ir šiandien su AI/Nvidia/Alphabet.</p>
+<p class="source">Šaltiniai: CrossingWallStreet, LA Times archyvas</p>
+</div>
+</div>
+
+<!-- 6. GALIMYBĖS IR GRĖSMĖS -->
+<div class="section">
+<div class="section-title"><span>🟢🔴</span> GALIMYBĖS IR GRĖSMĖS</div>
+
+<div class="opp-grid">
+<div class="opp-card green">
+<h4>🟢 GALIMYBĖS</h4>
+<ul>
+<li><strong>Energetikos akcijos</strong> — CVX, XOM, COP generuos rekordinį FCF prie $100+ naftos</li>
+<li><strong>AI korekcija = pirkimo galimybė</strong> — NVDA, MU, GOOG undervalued pagal Morningstar</li>
+<li><strong>Atminties superciklas</strong> — HBM paklausa eksploduoja, Micron Q2 ataskaita kovo 18</li>
+<li><strong>2009 paralelė</strong> — panikos metu perkamos akcijos duoda didžiausią grąžą ilguoju laikotarpiu</li>
+<li><strong>Dolerio stiprėjimas</strong> — palankus USD denominuotoms investicijoms</li>
+</ul>
+</div>
+
+<div class="opp-card red">
+<h4>🔴 GRĖSMĖS</h4>
+<ul>
+<li><strong>Konflikto eskalacija</strong> — nafta gali viršyti $120, sukeldama globalią recesiją (JPM)</li>
+<li><strong>Infliacija grįžta</strong> — +10% nafta = +0.4% infliacija, FED gali sustabdyti palūkanų mažinimą</li>
+<li><strong>Crash tikimybė 35%</strong> — Yardeni padidino; hedge fondai shortina agresyviai</li>
+<li><strong>Aviacijos / turizmo sektoriai</strong> — kuro kainos naikina maržas</li>
+<li><strong>Geopolitinis neapibrėžtumas</strong> — Ormūzo sąsiauris lieka uždarytas, tiekimo grandinės pažeidžiamos</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+<p>⚡ Paruošta: marco_git · 2026-03-09 07:03 EET<br>
+Duomenys: Reuters, Bloomberg, Goldman Sachs, JPMorgan, Morgan Stanley, Morningstar, FinViz, MarketBeat</p>
+<p class="disclaimer">⚠️ Tai nėra investavimo rekomendacija. Sprendimus priimkite savarankiškai pagal savo rizikos toleranciją. Praeities rezultatai negarantuoja ateities grąžos.</p>
+</div>
+
+</div>
+</body>
+</html>
