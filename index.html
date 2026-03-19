@@ -3,84 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Investment Reports — Index</title>
+<title>Investment Reports — marco_git ⚡</title>
 <style>
-  body { font-family: 'Inter', system-ui, sans-serif; background: #1c2a3e; color: #e2e8f0; padding: 40px 20px; }
-  .container { max-width: 600px; margin: 0 auto; }
-  h1 { color: #f59e0b; font-size: 24px; margin-bottom: 24px; }
-  .report-link { display: block; padding: 14px 18px; background: #283850; border: 1px solid #3a5070; border-radius: 10px; margin-bottom: 10px; color: #e2e8f0; text-decoration: none; transition: transform 0.15s ease, background 0.15s ease; }
-  .report-link:hover { transform: translateY(-2px); background: #3a5070; }
-  .report-link .date { font-weight: 700; color: #f59e0b; }
-  .report-link .desc { font-size: 13px; color: #94a3b8; }
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Inter',system-ui,sans-serif;
+    background: linear-gradient(160deg, #4a6080 0%, #2d4060 40%, #3a5070 70%, #283850 100%);
+    background-attachment: fixed;
+    color:#1c1510;
+    min-height:100vh;
+    padding:20px;
+  }
+  .container { max-width:680px; margin:0 auto; }
+  .header {
+    background: linear-gradient(135deg, #1c1510 0%, #2d1f0e 100%);
+    border-radius:16px;
+    padding:28px 20px;
+    text-align:center;
+    margin-bottom:20px;
+    position:relative;
+    overflow:hidden;
+  }
+  .header::before {
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;
+    height:4px;
+    background:linear-gradient(90deg, #f59e0b, #d97706, #f59e0b);
+  }
+  .header h1 { color:#fff; font-size:24px; font-weight:800; }
+  .header .gold { color:#f59e0b; }
+  .header p { color:#9a8570; font-size:14px; margin-top:6px; }
+  .report-link {
+    display:block;
+    background:#f0f4f9;
+    border-radius:12px;
+    padding:16px 18px;
+    margin-bottom:10px;
+    border:1px solid #c4d0e0;
+    text-decoration:none;
+    color:#1c1510;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .report-link:hover {
+    transform:translateY(-2px);
+    box-shadow:0 8px 24px rgba(30,45,80,0.2);
+  }
+  .report-link h3 { font-size:16px; color:#1e3a6e; font-weight:700; }
+  .report-link p { font-size:13px; color:#5a4a35; margin-top:4px; }
+  .footer {
+    background:#283850;
+    border-radius:12px;
+    padding:16px;
+    text-align:center;
+    color:#9a8570;
+    font-size:11px;
+    margin-top:10px;
+  }
 </style>
 </head>
 <body>
 <div class="container">
-  <h1>📊 Investicinės Ataskaitos</h1>
-  <a class="report-link" href="investment-2026-03-18.html">
-    <span class="date">2026-03-18</span>
-    <span class="desc">🏛️ FED SPRENDIMAS ŠIANDIEN 21:00 LT + Dot Plot! S&P 6,748 (+0.48%), 3-ia augimo diena. NVIDIA GTC: $1T+ užsakymų pipeline. Nafta -1% iki $102. Auksas ~$5,020, BTC $74K. NVDA/MU/GLW/STRL/GLD top picks. COIN/LLY/U/SPOT/MSFT vengti. Samsung +7%. Istorinės paralelės: 1976 aukso standarto panaikinimas, 1996 dot-com boom pradžia.</span>
+  <div class="header">
+    <h1>📈 <span class="gold">Investment Reports</span></h1>
+    <p>Kasdienės investicinės ataskaitos — marco_git ⚡</p>
+  </div>
+  <a class="report-link" href="investment-2026-03-19.html">
+    <h3>📊 2026-03-19 — Irano karas eskaluojasi, Fed palaiko palūkanas</h3>
+    <p>Brent >$112, S&P -1.36%, Auksas $4,852, BTC $71K. Stagfliacijos rizika auga. Top picks: MU, MSFT, GOOG, STRL, ABNB.</p>
   </a>
-  <a class="report-link" href="investment-2026-03-17.html">
-    <span class="date">2026-03-17</span>
-    <span class="desc">⚡ FOMC prasideda šiandien! Brent $104 — Hormūzas vis dar paralyžiuotas. S&P 6,698 (+1.0%), futures -0.5%. Auksas $5,015. AVGO/MU/SHEL/GOOGL/WDC top picks. Avialinijos -20%, CPB/SONY/TUSK/PCAR vengti. Micron ataskaita rytoj. 1973 naftos embargo paralelės.</span>
-  </a>
-  <a class="report-link" href="investment-2026-03-16.html">
-    <span class="date">2026-03-16</span>
-    <span class="desc">⚡ NVIDIA GTC šiandien! Brent $102 — Iranas taikosi į AI duomenų centrus. S&P 6,666 (+0.51%), BTC pralaužė $74K. Fed laiko palūkanas. NVDA/MU/AVGO/XOM/ORCL top picks. LCID/HIMS/ADBE/CPB/TER vengti. Auksas $5,018, 1973 OPEC paralelės.</span>
-  </a>
-  <a class="report-link" href="investment-2026-03-15.html">
-    <span class="date">2026-03-15</span>
-    <span class="desc">⚡ Hormūzo krizė tęsiasi — Brent $82, auksas $5,019, BTC $71K. FOMC kovo 18 d. — 96% laikoma. NVDA $180 (tikslas $274), MU $425 (+37% YTD), AMD MI450 artėja. Adobe/Spotify/Marvell/NIO/HP nuvertinti. 1973 naftos embargo paralelės.</span>
-  </a>
-  <a class="report-link" href="weekly-2026-03-14.html">
-    <span class="date">📅 2026-03-14 — SAVAITINĖ</span>
-    <span class="desc">🚨 Hormūzo krizė — didžiausias naftos šokas istorijoje. S&P -1.6% (3-ia savaitė), Dow -2%, MSCI EAFE -6.6%. Brent $103, G7 paleido 400M bbl atsargų. SNDK +27%, MU +15%, FICO -23%. BTC +4.47% safe-haven. XOM/MU/CF/RBRK/AVGO rekomendacijos. Stagfliacijos grėsmė.</span>
-  </a>
-  <a class="report-link" href="investment-2026-03-14.html">
-    <span class="date">2026-03-14</span>
-    <span class="desc">⛽ Brent $103 — 3-ia nuostolinga savaitė. NVIDIA GTC pirmadienį! Fed palūkanų mažinimas atidėtas iki rugsėjo. CLF −26%, Adobe −7.6%. NVDA/TSM/AMZN/LLY/SMCI top picks. Bitcoin $71K, auksas $5,018. Istorinės paralelės: 1976/1996/2006/2016.</span>
-  </a>
-  <a class="report-link" href="investment-2026-03-13.html">
-    <span class="date">2026-03-13</span>
-    <span class="desc">⚡ Hormūzo krizė tęsiasi — nafta $100.66, rinkos atsigauna +0.29% po ketvirtadienio -1.22%. Auksas $5,094 rekordas. NVDA/XOM/TSM/LLY/LMT top picks. QCOM Strong Sell, SPOT downgrade. Stagfliacijos grėsmė.</span>
-  </a>
-  <a class="report-link" href="investment-2026-03-12.html">
-    <span class="date">2026-03-12</span>
-    <span class="desc">🔴 Nafta >$100 — tankeriai padegti Irako vandenyse. IEA paleidžia 400M bbl rezervų. Kinija draudžia kuro eksportą. SpaceX svarsto $1.75T IPO. AMZN/CRWD/AMAT/MELI/RBRK top picks. Auksas $5,156, BTC $70K.</span>
-  </a>
-  <a class="report-link" href="investment-2026-03-11.html">
-    <span class="date">2026-03-11</span>
-    <span class="desc">🌍 Nafta $88 po IEA atsargų plano. CPI šiandien — 2.4-2.5% laukiama. Azija atsigauna (Nikkei +2.1%). Sektorių rotacija: tech→pramonė. NVDA/AMZN/MU/STRL/HLIO top picks. Auksas $5,202.</span>
-  </a>
-  <a class="report-link" href="investment-2026-03-10.html">
-    <span class="date">2026-03-10</span>
-    <span class="desc">🕊️ Trump signalizuoja Irano karo pabaigą — nafta krenta 7%, rinkos atšoka. NVDA GTC kovo 16-19. Auksas $5,171. AI+gynybos picks: NVDA/MU/AVGO/PLTR/AEM. CPI trečiadienį — lemiamas.</span>
-  </a>
-  <a class="report-link" href="investment-2026-03-09.html">
-    <span class="date">2026-03-09</span>
-    <span class="desc">🚨 KRITINIS: Nafta +29% iki $119.50, Hormūzo sąsiauris paralyžiuotas. Azija griūva (Hang Seng -3%). G7 svarsto atsargų atlaisvinimą. XOM/CVX/NVDA/CEG/MU top picks. Auksas $5,174.</span>
-  </a>
-  <a class="report-link" href="weekly-2026-03-07.html">
-    <span class="date">📅 2026-03-07 — SAVAITINĖ</span>
-    <span class="desc">🌍 Blogiausia savaitė nuo spalio: Irano konfliktas, nafta $93+, NFP -92K. S&P -2%, Dow -3%. Energetika +20% YTD. CVX/CRWD/SO/MRVL/OKTA rekomendacijos</span>
-  </a>
-  <a class="report-link" href="investment-2026-03-07.html">
-    <span class="date">2026-03-07</span>
-    <span class="desc">⚔️ Iranas + darbo vietų šokas (-92K) + BlackRock kreditų krizė. Nafta >$90, auksas $5,181. COP/NVDA/AVGO/AEM/MU top picks</span>
-  </a>
-  <a class="report-link" href="investment-2026-03-06.html">
-    <span class="date">2026-03-06</span>
-    <span class="desc">⚔ Naftos šokas tęsiasi, G7 renkasi, AI lustų eksporto kontrolė, NVDA/AMD/MU/EOG/GOOGL top picks</span>
-  </a>
-  <a class="report-link" href="investment-2026-03-05.html">
-    <span class="date">2026-03-05</span>
-    <span class="desc">🌍 Rinkos atsigauna, AI čipų bumas, MU/NVDA/AVGO top picks, SaaS sektorius krenta</span>
-  </a>
-  <a class="report-link" href="investment-2026-03-04.html">
-    <span class="date">2026-03-04</span>
-    <span class="desc">🚨 Irano konfliktas, Azijos rinkų griūtis, naftos šokas, gynybos sektoriaus rally</span>
-  </a>
+  <div class="footer">
+    <p>marco_git ⚡ Investment Intelligence</p>
+  </div>
 </div>
 </body>
 </html>
