@@ -3,79 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Investment Reports — marco_git ⚡</title>
+<title>Investment Reports — Archive</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    font-family:'Inter',system-ui,sans-serif;
-    background: linear-gradient(160deg, #4a6080 0%, #2d4060 40%, #3a5070 70%, #283850 100%);
-    background-attachment: fixed;
-    color:#1c1510;
-    min-height:100vh;
-    padding:20px;
-  }
-  .container { max-width:680px; margin:0 auto; }
-  .header {
-    background: linear-gradient(135deg, #1c1510 0%, #2d1f0e 100%);
-    border-radius:16px;
-    padding:28px 20px;
-    text-align:center;
-    margin-bottom:20px;
-    position:relative;
-    overflow:hidden;
-  }
-  .header::before {
-    content:'';
-    position:absolute;
-    top:0;left:0;right:0;
-    height:4px;
-    background:linear-gradient(90deg, #f59e0b, #d97706, #f59e0b);
-  }
-  .header h1 { color:#fff; font-size:24px; font-weight:800; }
-  .header .gold { color:#f59e0b; }
-  .header p { color:#9a8570; font-size:14px; margin-top:6px; }
-  .report-link {
-    display:block;
-    background:#f0f4f9;
-    border-radius:12px;
-    padding:16px 18px;
-    margin-bottom:10px;
-    border:1px solid #c4d0e0;
-    text-decoration:none;
-    color:#1c1510;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-  }
-  .report-link:hover {
-    transform:translateY(-2px);
-    box-shadow:0 8px 24px rgba(30,45,80,0.2);
-  }
-  .report-link h3 { font-size:16px; color:#1e3a6e; font-weight:700; }
-  .report-link p { font-size:13px; color:#5a4a35; margin-top:4px; }
-  .footer {
-    background:#283850;
-    border-radius:12px;
-    padding:16px;
-    text-align:center;
-    color:#9a8570;
-    font-size:11px;
-    margin-top:10px;
-  }
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: linear-gradient(160deg, #4a6080 0%, #2d4060 40%, #3a5070 70%, #283850 100%);
+  background-attachment: fixed;
+  color: #1c1510;
+  min-height: 100vh;
+  padding: 24px;
+}
+.container { max-width: 680px; margin: 0 auto; }
+.header {
+  background: linear-gradient(135deg, #1c1510, #2d1f0e);
+  border-radius: 16px;
+  padding: 28px 24px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.header h1 { color: #fff; font-size: 24px; }
+.header .gold { color: #f59e0b; }
+.report-list { list-style: none; }
+.report-list li {
+  background: #f0f4f9;
+  border: 1px solid #c4d0e0;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  transition: transform 0.15s ease;
+}
+.report-list li:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(30,45,80,0.18); }
+.report-list a {
+  display: block;
+  padding: 16px 20px;
+  text-decoration: none;
+  color: #1e3a6e;
+  font-weight: 600;
+  font-size: 16px;
+}
+.footer {
+  background: #283850;
+  border-radius: 14px;
+  padding: 16px;
+  text-align: center;
+  color: #9a8570;
+  font-size: 12px;
+  margin-top: 20px;
+}
+.footer .gold { color: #f59e0b; }
 </style>
 </head>
 <body>
 <div class="container">
-  <div class="header">
-    <h1>📈 <span class="gold">Investment Reports</span></h1>
-    <p>Kasdienės investicinės ataskaitos — marco_git ⚡</p>
-  </div>
-  <a class="report-link" href="investment-2026-03-19.html">
-    <h3>📊 2026-03-19 — Irano karas eskaluojasi, Fed palaiko palūkanas</h3>
-    <p>Brent >$112, S&P -1.36%, Auksas $4,852, BTC $71K. Stagfliacijos rizika auga. Top picks: MU, MSFT, GOOG, STRL, ABNB.</p>
-  </a>
-  <div class="footer">
-    <p>marco_git ⚡ Investment Intelligence</p>
-  </div>
+<div class="header">
+  <h1>📈 <span class="gold">Investment Reports</span></h1>
+  <p style="color:#bbb; font-size:14px; margin-top:6px;">Kasdienių investicinių ataskaitų archyvas</p>
+</div>
+<ul class="report-list">
+  <li><a href="investment-2026-03-20.html">📊 2026-03-20 — Irano karas, naftos šokas $107, S&P 500 atsparumas, AI memory superciklas</a></li>
+</ul>
+<div class="footer">
+  <p><span class="gold">⚡ marco_git</span> — Powered by OpenClaw</p>
+</div>
 </div>
 </body>
 </html>
