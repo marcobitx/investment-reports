@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Savaitinė Investicinė Ataskaita — 2026-03-21</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(160deg, #4a6080 0%, #2d4060 40%, #3a5070 70%, #283850 100%);
+    background-attachment: fixed;
+    color: #1c1510;
+    padding: 16px;
+    min-height: 100vh;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .container { max-width: 680px; margin: 0 auto; }
+
+  .header {
+    background: #1c1510;
+    border-radius: 16px;
+    padding: 28px 24px;
+    margin-bottom: 16px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #f59e0b, #d97706, #f59e0b);
+  }
+  .header h1 {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+  .header .gold { color: #f59e0b; }
+  .header .subtitle {
+    color: #9a8570;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .header .date-badge {
+    display: inline-block;
+    background: rgba(245,158,11,0.15);
+    color: #f59e0b;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-top: 10px;
+    border: 1px solid rgba(245,158,11,0.3);
+  }
+
+  .alert-banner {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    color: #fff;
+    text-align: center;
+  }
+  .alert-banner .alert-title {
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .alert-banner .alert-desc {
+    font-size: 13px;
+    opacity: 0.9;
+  }
+
+  .card {
+    background: #f0f4f9;
+    border: 1px solid #c4d0e0;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 8px rgba(30,45,80,0.14);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(30,45,80,0.2);
+  }
+  .card-warm { background: #eaf0f8; }
+  .card-avoid { background: #fff8f8; border-color: #fecaca; }
+  .card-history { background: #fffbeb; border-color: #fde68a; }
+  .card-green { background: #f0fdf4; border-color: #bbf7d0; }
+
+  .section-title {
+    color: #1e3a6e;
+    font-size: 17px;
+    font-weight: 800;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title .emoji { font-size: 20px; }
+
+  .index-grid { display: flex; flex-direction: column; gap: 8px; }
+  .index-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+  }
+  .index-name { font-weight: 700; font-size: 14px; color: #1e3a6e; }
+  .index-value { font-size: 13px; color: #5a4a35; }
+  .index-change { font-weight: 700; font-size: 15px; }
+
+  .up { color: #16a34a; }
+  .down { color: #dc2626; }
+  .neutral { color: #d97706; }
+
+  .stock-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 10px;
+    transition: transform 0.15s ease;
+  }
+  .stock-item:hover { transform: translateY(-1px); }
+  .stock-item:last-child { margin-bottom: 0; }
+
+  .stock-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: #e2e8f0;
+  }
+  .stock-info { flex: 1; min-width: 0; }
+  .stock-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; }
+  .stock-name { font-weight: 700; font-size: 14px; color: #1e3a6e; }
+  .stock-ticker { font-size: 12px; color: #9a8570; font-weight: 600; }
+  .stock-change { font-weight: 800; font-size: 15px; }
+  .stock-desc { font-size: 13px; color: #5a4a35; line-height: 1.5; }
+  .stock-meta { font-size: 11px; color: #9a8570; margin-top: 4px; }
+
+  .rec-item {
+    padding: 16px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 12px;
+  }
+  .rec-item:last-child { margin-bottom: 0; }
+  .rec-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .rec-rank {
+    width: 28px; height: 28px;
+    background: #1e3a6e;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .rec-title { font-weight: 700; font-size: 15px; color: #1e3a6e; }
+  .rec-ticker-price { font-size: 13px; color: #5a4a35; }
+  .rec-grid { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+  .rec-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .tag-target { background: #dcfce7; color: #16a34a; }
+  .tag-risk { background: #fef9c3; color: #a16207; }
+  .tag-tech { background: #dbeafe; color: #1e40af; }
+  .tag-fund { background: #f3e8ff; color: #7c3aed; }
+  .rec-desc { font-size: 13px; color: #5a4a35; line-height: 1.5; }
+  .rec-chart { width: 100%; border-radius: 8px; margin-top: 10px; border: 1px solid #e2e8f0; }
+
+  .avoid-item {
+    padding: 14px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #fecaca;
+    margin-bottom: 10px;
+  }
+  .avoid-item:last-child { margin-bottom: 0; }
+  .avoid-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .avoid-rank {
+    width: 24px; height: 24px;
+    background: #dc2626;
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 12px; flex-shrink: 0;
+  }
+  .avoid-name { font-weight: 700; font-size: 14px; color: #dc2626; }
+  .avoid-desc { font-size: 13px; color: #5a4a35; }
+
+  .history-item {
+    padding: 14px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #fde68a;
+    margin-bottom: 10px;
+  }
+  .history-item:last-child { margin-bottom: 0; }
+  .history-year {
+    font-weight: 800;
+    font-size: 14px;
+    color: #92400e;
+    margin-bottom: 4px;
+  }
+  .history-desc { font-size: 13px; color: #5a4a35; line-height: 1.5; }
+
+  .event-item {
+    padding: 12px 14px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 8px;
+  }
+  .event-item:last-child { margin-bottom: 0; }
+  .event-title { font-weight: 700; font-size: 14px; color: #1e3a6e; margin-bottom: 4px; }
+  .event-desc { font-size: 13px; color: #5a4a35; line-height: 1.5; }
+  .event-source { font-size: 11px; color: #9a8570; margin-top: 4px; }
+
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .stat-box {
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    padding: 14px;
+    text-align: center;
+  }
+  .stat-label { font-size: 11px; color: #9a8570; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .stat-value { font-size: 20px; font-weight: 800; }
+
+  .opp-threat-grid { display: flex; flex-direction: column; gap: 10px; }
+  .opp-item, .threat-item {
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .opp-item {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+  }
+  .threat-item {
+    background: #fff8f8;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+  }
+  .opp-item strong, .threat-item strong { display: block; margin-bottom: 2px; }
+
+  .chart-container {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    margin: 10px 0;
+  }
+  .chart-container img {
+    width: 100%;
+    display: block;
+  }
+
+  .sector-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+  }
+  .sector-name { width: 130px; font-size: 13px; font-weight: 600; color: #1e3a6e; flex-shrink: 0; }
+  .sector-bar-wrap { flex: 1; height: 22px; background: #e2e8f0; border-radius: 6px; overflow: hidden; position: relative; }
+  .sector-bar { height: 100%; border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 6px; font-size: 11px; font-weight: 700; color: #fff; min-width: 40px; }
+  .sector-bar.positive { background: linear-gradient(90deg, #16a34a, #22c55e); }
+  .sector-bar.negative { background: linear-gradient(90deg, #dc2626, #ef4444); direction: rtl; justify-content: flex-start; padding-left: 6px; padding-right: 0; }
+  .sector-pct { width: 55px; text-align: right; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+
+  .source {
+    display: inline-block;
+    font-size: 10px;
+    color: #9a8570;
+    background: rgba(154,133,112,0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+
+  .news-source {
+    font-size: 11px;
+    color: #9a8570;
+    margin-top: 6px;
+  }
+  .news-source a { color: #1e3a6e; text-decoration: none; }
+  .news-source a:hover { text-decoration: underline; }
+
+  .footer {
+    background: #283850;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 16px;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .footer a { color: #f59e0b; text-decoration: none; }
+
+  @media (min-width: 600px) {
+    body { padding: 24px; }
+    .container { padding: 0; }
+    .header { padding: 36px 32px; }
+    .header h1 { font-size: 26px; }
+    .card { padding: 24px; }
+    .stat-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>📊 SAVAITINĖ <span class="gold">INVESTICINĖ ATASKAITA</span></h1>
+    <div class="subtitle">Kovo 16–20, 2026 • Ketvirta nuostolinga savaitė iš eilės</div>
+    <div class="date-badge">📅 2026-03-21 — SAVAITINĖ APŽVALGA</div>
+  </div>
+
+  <!-- ALERT BANNER -->
+  <div class="alert-banner">
+    <div class="alert-title">🚨 FED PALIKO PALŪKANAS — INFLIACIJA KYLA, PALŪKANŲ MAŽINIMO VILTYS BLĖSTA</div>
+    <div class="alert-desc">Fed palūkanos 3.50–3.75% • PCE prognozė pakelta iki 2.7% • Brent $107/bbl • VIX šoktelėjo iki 27.46 • Russell 2000 korekcijoje • Auksas −10.5% per savaitę</div>
+  </div>
+
+  <!-- 1. SAVAITĖS SVARBIAUSI ĮVYKIAI -->
+  <div class="card">
+    <div class="section-title"><span class="emoji">🌍</span> SAVAITĖS SVARBIAUSI ĮVYKIAI</div>
+
+    <div class="event-item">
+      <div class="event-title">🏦 Fed paliko palūkanas 3.50–3.75%, pakėlė infliacijos prognozę</div>
+      <div class="event-desc">Kovo 18 d. FOMC posėdyje Fed paliko palūkanas nepakeistas, bet pakėlė 2026 m. PCE infliacijos prognozę nuo 2.4% iki 2.7%. Powell pažymėjo, kad tarifai ir naftos kainos kelia infliacijos rizikas. Tik vienas palūkanų mažinimas prognozuojamas 2026 m. — rinkos nusivylė.</div>
+      <div class="news-source">Šaltiniai: <a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20260318a.htm" target="_blank">Fed</a> · <a href="https://www.kiplinger.com/investing/live/march-fed-meeting-2026-live-updates-and-commentary" target="_blank">Kiplinger</a> · <a href="https://www.businessinsider.com/inflation-jobs-powell-march-fed-meeting-takeaways-interest-rates-fomc-2026-3" target="_blank">Business Insider</a></div>
+    </div>
+
+    <div class="event-item">
+      <div class="event-title">🛢️ Naftos kainos toliau kyla — Brent virš $107/bbl</div>
+      <div class="event-desc">Brent crude trečiadienį pakilo 3.8% iki $107.38/bbl po Fed sprendimo. Hormūzo sąsiaurio krizė tęsiasi, pasaulinė naftos pasiūla sumažėjo ~10M bbl/d. Ketvirtadienį nafta trumpam nukrito žemiau $95 po Izraelio pažadų padėti atidaryti sąsiaurį, bet penktadienį vėl kilo.</div>
+      <div class="news-source">Šaltiniai: <a href="https://www.iea.org/reports/oil-market-report-march-2026" target="_blank">IEA</a> · <a href="https://www.weforum.org/stories/2026/03/iran-conflict-disrupts-oil-and-gas-supply-top-energy-stories-march-2026/" target="_blank">WEF</a></div>
+    </div>
+
+    <div class="event-item">
+      <div class="event-title">⚔️ Iranas smogė Kataro SGD infrastruktūrai</div>
+      <div class="event-desc">Iraniečių smūgiai Kataro suskystintų gamtinių dujų (SGD) operacijoms sukėlė Europos dujų kainų šuolį. Tai dar labiau padidino energetikos neapibrėžtumą ir sustiprino stagfliacijos baimę visame pasaulyje.</div>
+      <div class="news-source">Šaltiniai: <a href="https://www.thestreet.com/investing/stock-market-today-march-19-2026" target="_blank">TheStreet</a> · <a href="https://aimsfx.com/2026/03/20/market-recap-thu-19-mar-why-it-matters/" target="_blank">AIMSFX</a></div>
+    </div>
+
+    <div class="event-item">
+      <div class="event-title">📉 Auksas patyrė didžiausią savaitinį kritimą per 4 dešimtmečius</div>
+      <div class="event-desc">Auksas nukrito 10.49% per savaitę iki $4,492.65/oz — blogiausias savaitinis rodiklis nuo 1983 m. Investuotojai pardavinėjo auksą siekdami padengti nuostolius kitur. Stipresnis doleris ir palūkanų mažinimo vilčių išgaravimas paspartino kritimą.</div>
+      <div class="news-source">Šaltiniai: <a href="https://www.mining.com/web/gold-price-set-for-worst-week-in-4-decades-as-war-curbs-rate-cut-bets/" target="_blank">Mining.com</a> · <a href="https://www.morningstar.com/news/marketwatch/20260320264/gold-isnt-your-safe-haven-in-this-war-it-just-logged-its-biggest-weekly-drop-in-over-14-years" target="_blank">Morningstar</a></div>
+    </div>
+
+    <div class="event-item">
+      <div class="event-title">🪙 Bitcoin kovoja prie $70K ribos</div>
+      <div class="event-desc">Bitcoin nusileido iki ~$70,600, savaitinis nuostolis ~1.4%. Augančios energijos kainos spaudžia kasybos pelningumą. Crypto Fear & Greed Index nukrito iki 11 („Extreme Fear"). Tačiau ETH (+2.2%) ir XRP (+3.1%) rodė atsparumą — rotacija į altcoinus.</div>
+      <div class="news-source">Šaltiniai: <a href="https://www.investing.com/news/cryptocurrency-news/bitcoin-price-today-steadies-near-71k-after-tumbling-on-oil-spike-hawkish-fed-4572270" target="_blank">Investing.com</a> · <a href="https://www.kucoin.com/news/articles/crypto-daily-market-report-march-20-2026" target="_blank">KuCoin</a></div>
+    </div>
+  </div>
+
+  <!-- 2. RINKŲ SAVAITĖS REZULTATAI -->
+  <div class="card card-warm">
+    <div class="section-title"><span class="emoji">📈</span> RINKŲ SAVAITĖS REZULTATAI</div>
+
+    <div class="index-grid">
+      <div class="index-row">
+        <div>
+          <div class="index-name">S&P 500</div>
+          <div class="index-value">6,506.54</div>
+        </div>
+        <div class="index-change down">▼ −1.9%</div>
+      </div>
+      <div class="index-row">
+        <div>
+          <div class="index-name">Nasdaq Composite</div>
+          <div class="index-value">21,647.61</div>
+        </div>
+        <div class="index-change down">▼ −2.1%</div>
+      </div>
+      <div class="index-row">
+        <div>
+          <div class="index-name">Dow Jones</div>
+          <div class="index-value">45,577.47</div>
+        </div>
+        <div class="index-change down">▼ −2.1%</div>
+      </div>
+      <div class="index-row">
+        <div>
+          <div class="index-name">Russell 2000</div>
+          <div class="index-value">~2,470</div>
+        </div>
+        <div class="index-change down">▼ −2.5% ⚠️ korekcijoje</div>
+      </div>
+      <div class="index-row">
+        <div>
+          <div class="index-name">DAX (Vokietija)</div>
+          <div class="index-value">22,380.19</div>
+        </div>
+        <div class="index-change down">▼ −4.55%</div>
+      </div>
+      <div class="index-row">
+        <div>
+          <div class="index-name">FTSE 100 (JK)</div>
+          <div class="index-value">~10,069</div>
+        </div>
+        <div class="index-change down">▼ −2.7%</div>
+      </div>
+      <div class="index-row">
+        <div>
+          <div class="index-name">VIX (baimės indeksas)</div>
+          <div class="index-value">27.46</div>
+        </div>
+        <div class="index-change down">▲ +14%</div>
+      </div>
+      <div class="index-row">
+        <div>
+          <div class="index-name">Brent nafta</div>
+          <div class="index-value">$107.38/bbl</div>
+        </div>
+        <div class="index-change up">▲ kyla</div>
+      </div>
+      <div class="index-row">
+        <div>
+          <div class="index-name">Auksas</div>
+          <div class="index-value">$4,492.65/oz</div>
+        </div>
+        <div class="index-change down">▼ −10.49%</div>
+      </div>
+      <div class="index-row">
+        <div>
+          <div class="index-name">Bitcoin</div>
+          <div class="index-value">~$70,622</div>
+        </div>
+        <div class="index-change down">▼ −1.4%</div>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="chart-container" style="margin-top: 14px;">
+      <img src="https://elite.finviz.com/chart.ashx?t=SPY&ty=c&ta=1&p=w&s=l" alt="S&P 500 Weekly Chart" onerror="this.parentElement.style.display='none'">
+    </div>
+    <div class="chart-container">
+      <img src="https://elite.finviz.com/chart.ashx?t=QQQ&ty=c&ta=1&p=w&s=l" alt="Nasdaq Weekly Chart" onerror="this.parentElement.style.display='none'">
+    </div>
+
+    <!-- Sector Performance -->
+    <div style="margin-top: 16px;">
+      <div style="font-weight: 700; font-size: 14px; color: #1e3a6e; margin-bottom: 10px;">📊 Sektorių savaitiniai rezultatai</div>
+      <div class="sector-row">
+        <div class="sector-name">Energetika</div>
+        <div class="sector-bar-wrap"><div class="sector-bar positive" style="width: 60%;">+2.99%</div></div>
+        <div class="sector-pct up">+2.99%</div>
+      </div>
+      <div class="sector-row">
+        <div class="sector-name">Technologijos</div>
+        <div class="sector-bar-wrap"><div class="sector-bar negative" style="width: 42%;">−2.07%</div></div>
+        <div class="sector-pct down">−2.07%</div>
+      </div>
+      <div class="sector-row">
+        <div class="sector-name">Finansai</div>
+        <div class="sector-bar-wrap"><div class="sector-bar negative" style="width: 38%;">−1.9%</div></div>
+        <div class="sector-pct down">−1.9%</div>
+      </div>
+      <div class="sector-row">
+        <div class="sector-name">Žaliavos</div>
+        <div class="sector-bar-wrap"><div class="sector-bar negative" style="width: 95%;">−4.82%</div></div>
+        <div class="sector-pct down">−4.82%</div>
+      </div>
+      <div class="sector-row">
+        <div class="sector-name">Komunalinės</div>
+        <div class="sector-bar-wrap"><div class="sector-bar negative" style="width: 100%;">−5.0%</div></div>
+        <div class="sector-pct down">−5.0%</div>
+      </div>
+    </div>
+
+    <div class="news-source">Šaltiniai: <a href="https://www.morningstar.com/markets/weekly-markets-wrap-stocks-stumble-energy-rises-utilities-fall" target="_blank">Morningstar</a> · <a href="https://apnews.com/article/wall-street-stocks-dow-nasdaq-2f6efefc04ebff99839a72d32b0a72e0" target="_blank">AP News</a> · <a href="https://www.lpl.com/research/blog/weekly-market-performance-march-20-2026.html" target="_blank">LPL</a></div>
+  </div>
+
+  <!-- 3. ANALITIKŲ APŽVALGA -->
+  <div class="card">
+    <div class="section-title"><span class="emoji">📊</span> ANALITIKŲ APŽVALGA</div>
+
+    <div class="event-item">
+      <div class="event-title">🏦 Goldman Sachs: nafta gali pasiekti $180+ jei konfliktas tęsis</div>
+      <div class="event-desc">Goldman Sachs perspėjo, kad jei Hormūzo sąsiaurio blokada tęsis iki balandžio pabaigos, Brent crude gali viršyti $180/bbl. Tai reikštų dar stipresnį stagfliacinį šoką nei 1973 m. Bankas sumažino S&P 500 metinį tikslą.</div>
+      <div class="news-source">Šaltinis: <a href="https://www.goldmansachs.com/insights/articles/how-will-the-iran-conflict-impact-oil-prices" target="_blank">Goldman Sachs</a></div>
+    </div>
+
+    <div class="event-item">
+      <div class="event-title">📊 Morningstar: energetika +3%, komunalinės −5% — didžiausia divergencija</div>
+      <div class="event-desc">Savaitinis Morningstar raportas pabrėžia, kad energetika buvo vienintelis teigiamas sektorius (+2.99%), tuo tarpu komunalinės (−5.0%) ir žaliavos (−4.82%) buvo blogiausios. „Didžioji rotacija" tęsiasi — kapitalas traukiasi iš augimo akcijų į vertės ir energetikos sektorių.</div>
+      <div class="news-source">Šaltinis: <a href="https://www.morningstar.com/markets/weekly-markets-wrap-stocks-stumble-energy-rises-utilities-fall" target="_blank">Morningstar Weekly Wrap</a></div>
+    </div>
+
+    <div class="event-item">
+      <div class="event-title">🐻 Motley Fool: „Ar 1973 m. kartojasi?"</div>
+      <div class="event-desc">Fool analitikai atkreipė dėmesį, kad S&P 500 nuo karo pradžios (vasario 28) prarado 5.4%, o Dow — beveik 7%. Shiller CAPE rodiklis rodo, kad rinka yra brangesne nei 1973 m. naftos krizės metu, o tai kelia dar didesnes korekcijos rizikas.</div>
+      <div class="news-source">Šaltiniai: <a href="https://www.fool.com/investing/2026/03/16/its-starting-to-look-like-1973-all-over-again-here/" target="_blank">Motley Fool</a> · <a href="https://www.morningstar.com/news/marketwatch/20260302109/iran-conflict-hits-a-market-thats-more-overvalued-than-during-the-1973-oil-shock" target="_blank">MarketWatch</a></div>
+    </div>
+
+    <div class="event-item">
+      <div class="event-title">📈 Barclays pakėlė XOM kainų tikslą iki $163</div>
+      <div class="event-desc">Barclays padidino Exxon Mobil kainų tikslą, palaikydamas „Overweight" reitingą. Naftos bendrovės yra vienos iš retų, kurios pelno iš dabartinės krizės. Chevron pasiekė visų laikų aukščiausią kainą $201.73.</div>
+      <div class="news-source">Šaltinis: <a href="https://www.marketbeat.com/instant-alerts/exxon-mobil-nysexom-hits-new-1-year-high-on-analyst-upgrade-2026-03-17/" target="_blank">MarketBeat</a></div>
+    </div>
+
+    <div class="event-item">
+      <div class="event-title">⚠️ Dallas Fed: stagfliacijos scenarijus darosi realus</div>
+      <div class="event-desc">Dallas Fed tyrimas perspėjo, kad karo sukeltas naftos tiekimo sutrikimas gali sumažinti JAV BVP augimą 1-2 procentiniais punktais 2026 m. antroje pusėje, tuo pačiu keliant infliaciją. Tai klasikinis stagfliacijos receptas.</div>
+      <div class="news-source">Šaltinis: <a href="https://www.dallasfed.org/research/economics/2026/0320" target="_blank">Dallas Fed</a></div>
+    </div>
+  </div>
+
+  <!-- 4. TOP 5 SAVAITĖS NUGALĖTOJAI -->
+  <div class="card card-green">
+    <div class="section-title"><span class="emoji">🏆</span> TOP 5 SAVAITĖS NUGALĖTOJAI</div>
+
+    <div class="stock-item">
+      <img class="stock-logo" src="https://logo.clearbit.com/solaredge.com" alt="SEDG" onerror="this.style.display='none'">
+      <div class="stock-info">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">SolarEdge Technologies</div>
+            <div class="stock-ticker">SEDG</div>
+          </div>
+          <div class="stock-change up">+38.06%</div>
+        </div>
+        <div class="stock-desc">Saulės energetikos lyderis pasinaudojo energijos krizės sentimentu. Investuotojai intensyviai perka atsinaujinančios energetikos akcijas kaip ilgalaikę alternatyvą naftos priklausomybei. Didžiausias savaitinis šuolis tarp S&P 500 komponentų.</div>
+        <div class="source">Morningstar Weekly Wrap</div>
+      </div>
+    </div>
+
+    <div class="stock-item">
+      <img class="stock-logo" src="https://logo.clearbit.com/ventureglobal.com" alt="VG" onerror="this.style.display='none'">
+      <div class="stock-info">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">Venture Global</div>
+            <div class="stock-ticker">VG</div>
+          </div>
+          <div class="stock-change up">+20.40%</div>
+        </div>
+        <div class="stock-desc">SGD (suskystintų gamtinių dujų) eksportuotoja gauna tiesioginę naudą iš Kataro SGD infrastruktūros atakų. Europos dujų kainos šoktelėjo, o JAV SGD eksportuotojai tapo strategiškai svarbūs.</div>
+        <div class="source">Morningstar</div>
+      </div>
+    </div>
+
+    <div class="stock-item">
+      <img class="stock-logo" src="https://logo.clearbit.com/equinor.com" alt="EQNR" onerror="this.style.display='none'">
+      <div class="stock-info">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">Equinor ASA</div>
+            <div class="stock-ticker">EQNR</div>
+          </div>
+          <div class="stock-change up">+18.05%</div>
+        </div>
+        <div class="stock-desc">Norvegų energetikos milžinė pasinaudojo augančiomis naftos ir dujų kainomis. Europos energetikos nepriklausomybė nuo Artimųjų Rytų stipriai kelia Skandinavijos energetikos akcijas.</div>
+        <div class="source">Morningstar</div>
+      </div>
+    </div>
+
+    <div class="stock-item">
+      <img class="stock-logo" src="https://logo.clearbit.com/arm.com" alt="ARM" onerror="this.style.display='none'">
+      <div class="stock-info">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">Arm Holdings</div>
+            <div class="stock-ticker">ARM</div>
+          </div>
+          <div class="stock-change up">+14.41%</div>
+        </div>
+        <div class="stock-desc">Lustų architektūros lyderė atsigavo po ankstesnių nuostolių. AI infrastruktūros paklausa išlieka stipri — ARM dizainai yra kiekviename smartphone, serveryje ir IoT įrenginyje. Pelno ataskaitos lūkesčiai teigiami.</div>
+        <div class="source">Morningstar Weekly Wrap</div>
+      </div>
+    </div>
+
+    <div class="stock-item">
+      <img class="stock-logo" src="https://logo.clearbit.com/ciena.com" alt="CIEN" onerror="this.style.display='none'">
+      <div class="stock-info">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">Ciena Corporation</div>
+            <div class="stock-ticker">CIEN</div>
+          </div>
+          <div class="stock-change up">+13.80%</div>
+        </div>
+        <div class="stock-desc">Tinklo infrastruktūros tiekėja pasinaudojo duomenų centrų plėtros tempu. AI ir debesų kompiuterijos augimas skatina optinių tinklų paklausą. Stiprūs Q1 rezultatai viršijo lūkesčius.</div>
+        <div class="source">Trefis</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. TOP 5 SAVAITĖS PRALAIMĖTOJAI -->
+  <div class="card card-avoid">
+    <div class="section-title"><span class="emoji">📉</span> TOP 5 SAVAITĖS PRALAIMĖTOJAI</div>
+
+    <div class="stock-item">
+      <img class="stock-logo" src="https://logo.clearbit.com/tencentmusic.com" alt="TME" onerror="this.style.display='none'">
+      <div class="stock-info">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">Tencent Music</div>
+            <div class="stock-ticker">TME</div>
+          </div>
+          <div class="stock-change down">−28.94%</div>
+        </div>
+        <div class="stock-desc">Kinijos muzikos platforma patyrė didžiausią nuosmukį tarp stambių akcijų. Geopolitinės įtampos, Kinijos makroekonominiai rūpesčiai ir investuotojų bėgimas iš rizikingų rinkų sukėlė masinį pardavimą.</div>
+        <div class="source">Morningstar</div>
+      </div>
+    </div>
+
+    <div class="stock-item">
+      <img class="stock-logo" src="https://logo.clearbit.com/klarna.com" alt="KLAR" onerror="this.style.display='none'">
+      <div class="stock-info">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">Klarna Group</div>
+            <div class="stock-ticker">KLAR</div>
+          </div>
+          <div class="stock-change down">−20.79%</div>
+        </div>
+        <div class="stock-desc">„Pirk dabar, mokėk vėliau" lyderė nukentėjo dvigubai — augančios palūkanos kenkia fintech verslo modeliui, o vartotojų išlaidų mažėjimo baimės spaudžia akcijų kainą. IPO euforija baigėsi.</div>
+        <div class="source">Morningstar</div>
+      </div>
+    </div>
+
+    <div class="stock-item">
+      <img class="stock-logo" src="https://logo.clearbit.com/mosaicco.com" alt="MOS" onerror="this.style.display='none'">
+      <div class="stock-info">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">Mosaic Company</div>
+            <div class="stock-ticker">MOS</div>
+          </div>
+          <div class="stock-change down">−15%+</div>
+        </div>
+        <div class="stock-desc">Trąšų gamintojas nukrito su visu žaliavų sektoriumi (−4.82%). Kylančios energijos kainos didina gamybos sąnaudas, o pasaulinė žemės ūkio paklausa silpnėja dėl ekonominio sulėtėjimo baimių.</div>
+        <div class="source">Morningstar</div>
+      </div>
+    </div>
+
+    <div class="stock-item">
+      <img class="stock-logo" src="https://logo.clearbit.com/sabre.com" alt="SABR" onerror="this.style.display='none'">
+      <div class="stock-info">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">Sabre Corporation</div>
+            <div class="stock-ticker">SABR</div>
+          </div>
+          <div class="stock-change down">−14%+</div>
+        </div>
+        <div class="stock-desc">Kelionių technologijų bendrovė kenčia nuo masinių skrydžių atšaukimų Artimuosiuose Rytuose ir bendrinio kelionių sektoriaus silpnumo. Aukštos kuro kainos spaudžia aviakompanijų pelningumą.</div>
+        <div class="source">Morningstar</div>
+      </div>
+    </div>
+
+    <div class="stock-item">
+      <img class="stock-logo" src="https://logo.clearbit.com/vnet.com" alt="VNET" onerror="this.style.display='none'">
+      <div class="stock-info">
+        <div class="stock-header">
+          <div>
+            <div class="stock-name">VNET Group</div>
+            <div class="stock-ticker">VNET</div>
+          </div>
+          <div class="stock-change down">−13%+</div>
+        </div>
+        <div class="stock-desc">Kinijos duomenų centrų operatorius nukrito kartu su platesne Kinijos technologijų akcijų banga. Geopolitinė rizika ir Kinijos ekonomikos sulėtėjimas veikia kaip dvigubas neigiamas katalizatorius.</div>
+        <div class="source">Morningstar</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. TOP 5 REKOMENDACIJOS KITAI SAVAITEI -->
+  <div class="card">
+    <div class="section-title"><span class="emoji">🎯</span> TOP 5 REKOMENDACIJOS KITAI SAVAITEI</div>
+
+    <div class="rec-item">
+      <div class="rec-header">
+        <div class="rec-rank">1</div>
+        <img class="stock-logo" src="https://logo.clearbit.com/chevron.com" alt="CVX" onerror="this.style.display='none'">
+        <div>
+          <div class="rec-title">Chevron Corp.</div>
+          <div class="rec-ticker-price">CVX · $201.73 · ATH pasiektas</div>
+        </div>
+      </div>
+      <div class="rec-grid">
+        <span class="rec-tag tag-target">🎯 Tikslas: $212</span>
+        <span class="rec-tag tag-risk">⚠️ Rizika: vidutinė</span>
+        <span class="rec-tag tag-tech">📐 TECH: virš visų MA</span>
+        <span class="rec-tag tag-fund">📊 FUND: div 3.6%, Hess įsigijimas</span>
+      </div>
+      <div class="rec-desc"><strong>Techninis:</strong> Visų laikų aukščiausia kaina, akcija virš 50 ir 200 dienų slenkančių vidurkių, stiprus momentum. <strong>Fundamentinis:</strong> Struktūriniai kaštų sumažinimai $3-4B, Hess įsigijimas prideda 2-3% produkcijos augimą, UBS/Citi/Wells Fargo kelia tikslus. Naftos kainos yra tiesioginis tailwind. Dividend Aristocrat.</div>
+      <div class="chart-container">
+        <img class="rec-chart" src="https://elite.finviz.com/chart.ashx?t=CVX&ty=c&ta=1&p=w&s=l" alt="CVX chart" onerror="this.parentElement.style.display='none'">
+      </div>
+      <div class="news-source">Šaltiniai: <a href="https://www.tikr.com/blog/chevron-rose-10-in-the-last-30-days-heres-where-the-stock-could-go-in-2026" target="_blank">TIKR</a> · <a href="https://www.marketbeat.com/instant-alerts/filing-chevron-corporation-cvx-stock-position-increased-by-connors-investor-services-inc-2026-03-19/" target="_blank">MarketBeat</a></div>
+    </div>
+
+    <div class="rec-item">
+      <div class="rec-header">
+        <div class="rec-rank">2</div>
+        <img class="stock-logo" src="https://logo.clearbit.com/newmont.com" alt="NEM" onerror="this.style.display='none'">
+        <div>
+          <div class="rec-title">Newmont Corporation</div>
+          <div class="rec-ticker-price">NEM · Aukso kasykla nr. 1 pasaulyje</div>
+        </div>
+      </div>
+      <div class="rec-grid">
+        <span class="rec-tag tag-target">🎯 Tikslas: +15-20%</span>
+        <span class="rec-tag tag-risk">⚠️ Rizika: vidutinė-žema</span>
+        <span class="rec-tag tag-tech">📐 TECH: oversold po aukso kritimo</span>
+        <span class="rec-tag tag-fund">📊 FUND: Strong Buy, EPS augimas</span>
+      </div>
+      <div class="rec-desc"><strong>Techninis:</strong> Auksas nukrito 10.5% per savaitę — tai sukuria kontrariško pirkimo galimybę. RSI oversold teritorijoje. <strong>Fundamentinis:</strong> Zacks „Strong Buy" reitingas, stiprus EPS ir pardavimų augimas. Auksas vis dar +48% per metus, dabartinis kritimas yra trumpalaikis likvidumo efektas, ne fundamentinis pokytis.</div>
+      <div class="chart-container">
+        <img class="rec-chart" src="https://elite.finviz.com/chart.ashx?t=NEM&ty=c&ta=1&p=w&s=l" alt="NEM chart" onerror="this.parentElement.style.display='none'">
+      </div>
+      <div class="news-source">Šaltinis: <a href="https://www.zacks.com/featured-articles/101/best-stocks-to-buy-now" target="_blank">Zacks</a></div>
+    </div>
+
+    <div class="rec-item">
+      <div class="rec-header">
+        <div class="rec-rank">3</div>
+        <img class="stock-logo" src="https://logo.clearbit.com/micron.com" alt="MU" onerror="this.style.display='none'">
+        <div>
+          <div class="rec-title">Micron Technology</div>
+          <div class="rec-ticker-price">MU · AI atminčių superciklas</div>
+        </div>
+      </div>
+      <div class="rec-grid">
+        <span class="rec-tag tag-target">🎯 Tikslas: +20-25%</span>
+        <span class="rec-tag tag-risk">⚠️ Rizika: vidutinė</span>
+        <span class="rec-tag tag-tech">📐 TECH: pullback nuo aukštumų</span>
+        <span class="rec-tag tag-fund">📊 FUND: DRAM/NAND superciklas</span>
+      </div>
+      <div class="rec-desc"><strong>Techninis:</strong> Korekcija nuo aukštumų sukuria įėjimo tašką. Tech sektoriaus nuosmukis suteikia geresnę kainą. <strong>Fundamentinis:</strong> Forbes rekomenduoja kaip Top 3 akcijų pirkimą kovo mėn. AI duomenų centrams reikia eksponentiškai daugiau atminties. HBM (High Bandwidth Memory) paklausa sprogsta. Greitai augantys pajamos ir pelnas.</div>
+      <div class="chart-container">
+        <img class="rec-chart" src="https://elite.finviz.com/chart.ashx?t=MU&ty=c&ta=1&p=w&s=l" alt="MU chart" onerror="this.parentElement.style.display='none'">
+      </div>
+      <div class="news-source">Šaltinis: <a href="https://www.forbes.com/sites/investor-hub/article/3-best-stocks-buy-invest-now-march-2026/" target="_blank">Forbes</a></div>
+    </div>
+
+    <div class="rec-item">
+      <div class="rec-header">
+        <div class="rec-rank">4</div>
+        <img class="stock-logo" src="https://logo.clearbit.com/insw.com" alt="INSW" onerror="this.style.display='none'">
+        <div>
+          <div class="rec-title">International Seaways</div>
+          <div class="rec-ticker-price">INSW · Tankerių operatorius</div>
+        </div>
+      </div>
+      <div class="rec-grid">
+        <span class="rec-tag tag-target">🎯 Tikslas: +15-20%</span>
+        <span class="rec-tag tag-risk">⚠️ Rizika: vidutinė</span>
+        <span class="rec-tag tag-tech">📐 TECH: momentum kyla</span>
+        <span class="rec-tag tag-fund">📊 FUND: Strong Buy, EPS boom</span>
+      </div>
+      <div class="rec-desc"><strong>Techninis:</strong> Stiprus momentum — karo metu tankerių tarifai šoktelėjo. Ilgesni maršrutai = daugiau pajamų per laivą. <strong>Fundamentinis:</strong> Zacks „Strong Buy", stiprus EPS ir pardavimų augimas. Hormūzo sąsiaurio blokada verčia naftos gabenimą keliauti ilgesniais maršrutais aplink Afriką, o tai dramatiškai padidina paklausą ir kainas.</div>
+      <div class="chart-container">
+        <img class="rec-chart" src="https://elite.finviz.com/chart.ashx?t=INSW&ty=c&ta=1&p=w&s=l" alt="INSW chart" onerror="this.parentElement.style.display='none'">
+      </div>
+      <div class="news-source">Šaltinis: <a href="https://www.zacks.com/featured-articles/101/best-stocks-to-buy-now" target="_blank">Zacks</a></div>
+    </div>
+
+    <div class="rec-item">
+      <div class="rec-header">
+        <div class="rec-rank">5</div>
+        <img class="stock-logo" src="https://logo.clearbit.com/sterlinginfra.com" alt="STRL" onerror="this.style.display='none'">
+        <div>
+          <div class="rec-title">Sterling Infrastructure</div>
+          <div class="rec-ticker-price">STRL · Infrastruktūros statyba</div>
+        </div>
+      </div>
+      <div class="rec-grid">
+        <span class="rec-tag tag-target">🎯 Tikslas: +20%</span>
+        <span class="rec-tag tag-risk">⚠️ Rizika: vidutinė-žema</span>
+        <span class="rec-tag tag-tech">📐 TECH: konsolidacija</span>
+        <span class="rec-tag tag-fund">📊 FUND: duomenų centrai + gamyba</span>
+      </div>
+      <div class="rec-desc"><strong>Techninis:</strong> Konsolidacijos fazėje po stipraus augimo — potencialus breakout. <strong>Fundamentinis:</strong> Forbes Top 3 kovo pirkimas. Tiesiogiai pasinaudoja duomenų centrų statyba ir gamybos reshoring'u JAV. EPS augimas prognozuojamas >30%. Infrastruktūros išlaidos auga nepaisant makro neapibrėžtumo.</div>
+      <div class="chart-container">
+        <img class="rec-chart" src="https://elite.finviz.com/chart.ashx?t=STRL&ty=c&ta=1&p=w&s=l" alt="STRL chart" onerror="this.parentElement.style.display='none'">
+      </div>
+      <div class="news-source">Šaltinis: <a href="https://www.forbes.com/sites/investor-hub/article/3-best-stocks-buy-invest-now-march-2026/" target="_blank">Forbes</a></div>
+    </div>
+  </div>
+
+  <!-- 7. TOP 5 KUR VENGTI -->
+  <div class="card card-avoid">
+    <div class="section-title"><span class="emoji">⛔</span> TOP 5 KUR VENGTI KITĄ SAVAITĘ</div>
+
+    <div class="avoid-item">
+      <div class="avoid-header">
+        <div class="avoid-rank">1</div>
+        <div class="avoid-name">VinFast Auto (VFS)</div>
+      </div>
+      <div class="avoid-desc">Vietnamo EV gamintojas su milžiniškais nuostoliais ir agresyvia tarptautine ekspansija. Kompanija degina grynuosius neturint pelno kelio. Bankroto rizika esant ekonominiam nuosmukiui. Rivian, Lucid ar Tesla — geresnės alternatyvos.</div>
+      <div class="news-source">Šaltinis: <a href="https://www.fool.com/investing/2026/03/21/ev-stock-massive-upside-investors-profit-vfs/" target="_blank">Motley Fool</a></div>
+    </div>
+
+    <div class="avoid-item">
+      <div class="avoid-header">
+        <div class="avoid-rank">2</div>
+        <div class="avoid-name">Komunalinių paslaugų sektorius (XLU)</div>
+      </div>
+      <div class="avoid-desc">Blogiausias savaitės sektorius (−5.0%). Kylančios Treasury yields kenkia didelio skolos lygio bendrovėms. AI elektros energijos „hype" blėsta, o didėjančios energijos kainos mažina pelno maržas. Vengti bent tol, kol palūkanų kryptis paaiškės.</div>
+      <div class="news-source">Šaltinis: <a href="https://www.morningstar.com/news/dow-jones/202603207426/utilities-slide-as-treasury-yields-test-highs-utilities-roundup" target="_blank">Morningstar</a></div>
+    </div>
+
+    <div class="avoid-item">
+      <div class="avoid-header">
+        <div class="avoid-rank">3</div>
+        <div class="avoid-name">UniFirst Corp. (UNF)</div>
+      </div>
+      <div class="avoid-desc">Verslo paslaugų bendrovė su pajamų augimu žemiau pramonės standarto, prognozuojamas vangus pardavimų augimas ir EPS augimas atsiliekantis nuo grupės per 5 metus. StockStory rekomenduoja parduoti.</div>
+      <div class="news-source">Šaltinis: <a href="https://stockstory.org/us/stocks/nyse/unf/news/buy-or-sell/2-services-stocks-to-target-this-week-and-1-we-avoid" target="_blank">StockStory</a></div>
+    </div>
+
+    <div class="avoid-item">
+      <div class="avoid-header">
+        <div class="avoid-rank">4</div>
+        <div class="avoid-name">Smulkiosios Kinijos tech (TME, VNET)</div>
+      </div>
+      <div class="avoid-desc">TME (−29%), VNET (−13%) — Kinijos tech akcijos patiria dvigubą spaudimą: geopolitinė rizika + Kinijos ekonomikos sulėtėjimas. Kapitalas bėga iš emerging markets į saugias priebėgas. Vengti kol geopolitinė situacija stabilizuosis.</div>
+      <div class="news-source">Šaltiniai: <a href="https://www.morningstar.com/markets/weekly-markets-wrap-stocks-stumble-energy-rises-utilities-fall" target="_blank">Morningstar</a></div>
+    </div>
+
+    <div class="avoid-item">
+      <div class="avoid-header">
+        <div class="avoid-rank">5</div>
+        <div class="avoid-name">Aukšto sverto auginimo akcijos</div>
+      </div>
+      <div class="avoid-desc">Kompanijos kaip Klarna (−21%) rodo, kad „augimo bet kokia kaina" modelis kenčia kai palūkanos kyla. Aukštas margin debt tarp investuotojų + rekordiškai žemi grynųjų lygiai = priverstiniai pardavimai korekcijos metu. Vengti nepelningų tech ir fintech bendrovių.</div>
+      <div class="news-source">Šaltiniai: <a href="https://seekingalpha.com/article/4855943-5-stock-market-warning-signs-heading-into-2026" target="_blank">Seeking Alpha</a> · <a href="https://www.fool.com/investing/2026/03/19/stock-market-sending-warning-investors-know/" target="_blank">Motley Fool</a></div>
+    </div>
+  </div>
+
+  <!-- 8. ISTORINĖS PARALELĖS -->
+  <div class="card card-history">
+    <div class="section-title"><span class="emoji">📜</span> ISTORINĖS PARALELĖS</div>
+
+    <div class="history-item">
+      <div class="history-year">🛢️ 1973 — Arabų naftos embargas</div>
+      <div class="history-desc">OAPEC embargavo naftą Izraelį palaikančioms šalims. Nafta pakilo ~300% (nuo $3 iki $12/bbl). S&P 500 nukrito >40% per 1973-74. Dow krito 45%. Atsigavimui prireikė 7.5 metų. 2026 m. Hormūzo krizė — tiesioginė paralelė: naftos tiekimo sutrikimas + auganti infliacija + centrinio banko dilema. Morningstar/MarketWatch perspėja, kad dabartinė rinka yra <strong>brangesnė nei 1973 m.</strong>, kas didina korekcijos riziką.</div>
+      <div class="news-source">Šaltiniai: <a href="https://www.fool.com/investing/2026/03/16/its-starting-to-look-like-1973-all-over-again-here/" target="_blank">Motley Fool</a> · <a href="https://www.morningstar.com/news/marketwatch/20260302109/iran-conflict-hits-a-market-thats-more-overvalued-than-during-the-1973-oil-shock" target="_blank">MarketWatch</a></div>
+    </div>
+
+    <div class="history-item">
+      <div class="history-year">⛽ 1979 — Irano revoliucija ir antrasis naftos šokas</div>
+      <div class="history-desc">Irano revoliucija sumažino naftos gavybą 4.8M bbl/d. Nafta pakilo nuo $15 iki $39/bbl. Sekė Volcker'io palūkanų pakėlimas iki 20%, recesija ir ilgas meškų rinkos periodas. 2026 m. paralelė: dabartinis tiekimo sutrikimas (~10M bbl/d) yra dar didesnis nei 1979 m. Powell stovi prieš Volcker'io tipo dilemą — kovoti su infliacija reiškia nužudyti ekonomiką.</div>
+      <div class="news-source">Šaltinis: <a href="https://www.fool.com/investing/2026/03/20/oil-shock-what-history-says-about-the-stock-market/" target="_blank">Motley Fool</a></div>
+    </div>
+
+    <div class="history-item">
+      <div class="history-year">🏜️ 1990 — Persijos įlankos karas</div>
+      <div class="history-desc">Irakas įsiveržė į Kuveitą, nafta pakilo 100% per 3 mėn. S&P 500 nukrito 20% nuo piko iki dugno. Tačiau atsigavimas buvo greitas — per 6 mėn. po karo pradžios rinka atsigavo. Skirtumas nuo 2026: Hormūzo sąsiaurio uždarymas yra fundamentaliai blogesnis nei Kuveito okupacija, nes blokuoja ne vienos šalies, o viso regiono eksportą.</div>
+    </div>
+
+    <div class="history-item">
+      <div class="history-year">💰 1980 — Aukso burbulas ir žlugimas</div>
+      <div class="history-desc">Auksas 1980 m. pasiekė $850/oz, po to per 2 metus nukrito 65%. 2026 m. auksas nukrito 10.5% per vieną savaitę — didžiausias savaitinis kritimas nuo 1983 m. Paralelė: kai likvidumas trūksta visur, net „saugios" priebėgos parduodamos. Tačiau 1980 m. aukso kritimas buvo burbulo sprogimas, o 2026 m. — priverstinis likvidavimas.</div>
+      <div class="news-source">Šaltinis: <a href="https://www.mining.com/web/gold-price-set-for-worst-week-in-4-decades-as-war-curbs-rate-cut-bets/" target="_blank">Mining.com</a></div>
+    </div>
+  </div>
+
+  <!-- 9. GALIMYBĖS IR GRĖSMĖS -->
+  <div class="card">
+    <div class="section-title"><span class="emoji">🟢🔴</span> GALIMYBĖS IR GRĖSMĖS</div>
+
+    <div class="opp-threat-grid">
+      <div class="opp-item">
+        <strong>🟢 Energetikos sektorius — vienintelis nugalėtojas</strong>
+        Naftos ir dujų kompanijos (CVX, XOM, EQNR) klesti. Kol Hormūzo krizė tęsiasi, energetika lieka stipriausia pozicija. Tankerių operatoriai (INSW) gauna papildomą naudą iš ilgesnių maršrutų.
+      </div>
+      <div class="opp-item">
+        <strong>🟢 Aukso atpigimas — kontrariška galimybė</strong>
+        Auksas −10.5% per savaitę, bet +48% per metus. Dabartinis kritimas yra likvidumo efektas, ne fundamentinis pokytis. NEM ir kiti aukso kasyklų operatoriai tapo itin pigūs.
+      </div>
+      <div class="opp-item">
+        <strong>🟢 AI infrastruktūra po korekcijos</strong>
+        MU, ARM, CIEN, WDC — tech korekcija sukuria pirkimo galimybę ilgalaikiams investuotojams. AI paklausa niekur nedingsta, tik kainos tapo prieinamesnės.
+      </div>
+      <div class="opp-item">
+        <strong>🟢 Atsinaujinanti energetika — SEDG +38%</strong>
+        Naftos krizė skatina investicijas į saulę, vėją ir kitas alternatyvas. Ilgalaikis vėjas pučia atsinaujinančios energetikos naudai.
+      </div>
+
+      <div class="threat-item">
+        <strong>🔴 Stagfliacija — rimčiausia grėsmė</strong>
+        Dallas Fed perspėja: naftos šokas gali sumažinti JAV BVP 1-2 pp. ir padidinti infliaciją vienu metu. Fed dilema: mažinti palūkanas (=infliacija) ar kelti (=recesija). Blogiausi laikai nuo 1970-ųjų.
+      </div>
+      <div class="threat-item">
+        <strong>🔴 VIX 27.46 — baimė auga, pardavimai gali intensyvėti</strong>
+        VIX pakilo 14% per savaitę. Jei S&P 500 praras 6,400 palaikymo lygį, gali sekti dar stipresnis pardavimas. Margin debt rekordiškai aukštas, grynųjų lygiai rekordiškai žemi — priverstiniai pardavimai neišvengiami.
+      </div>
+      <div class="threat-item">
+        <strong>🔴 Hormūzo sąsiauris — $180/bbl scenarijus</strong>
+        Goldman Sachs perspėja: jei blokada tęsis iki balandžio pabaigos, nafta gali viršyti $180/bbl. Tai reikštų pilną stagfliacinį šoką, galimą S&P 500 kritimą 15-20% nuo dabartinių lygių.
+      </div>
+      <div class="threat-item">
+        <strong>🔴 Ketvirtoji nuostolinga savaitė — techniniai signalai blogėja</strong>
+        S&P 500 žemiau 200 dienų MA. Istoriškai, kai indeksas pralamina šį lygį, vidutinis peak-to-trough kritimas siekia 15-20%. Dow patiria didžiausią 4 savaičių nuostolį nuo 2025 m. balandžio.
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. SAVAITĖS STATISTIKA -->
+  <div class="card card-warm">
+    <div class="section-title"><span class="emoji">📊</span> SAVAITĖS STATISTIKA</div>
+
+    <div class="stat-grid">
+      <div class="stat-box">
+        <div class="stat-label">S&P 500</div>
+        <div class="stat-value down">−1.9%</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Nasdaq</div>
+        <div class="stat-value down">−2.1%</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Dow Jones</div>
+        <div class="stat-value down">−2.1%</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">VIX</div>
+        <div class="stat-value down">27.46</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Brent nafta</div>
+        <div class="stat-value neutral">$107/bbl</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Auksas</div>
+        <div class="stat-value down">−10.5%</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Bitcoin</div>
+        <div class="stat-value down">~$70,622</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Fed palūkanos</div>
+        <div class="stat-value neutral">3.50-3.75%</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Savaitės nugalėtojas</div>
+        <div class="stat-value up" style="font-size:14px">SEDG +38%</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Savaitės pralaimėtojas</div>
+        <div class="stat-value down" style="font-size:14px">TME −29%</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Geriausias sektorius</div>
+        <div class="stat-value up" style="font-size:14px">Energetika +3%</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Blogiausias sektorius</div>
+        <div class="stat-value down" style="font-size:14px">Komunal. −5%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>📊 <strong>Savaitinė Investicinė Ataskaita</strong> — Kovo 16–20, 2026</div>
+    <div style="margin-top: 6px;">Paruošta automatiškai · Duomenys iš Morningstar, AP News, Fed, Forbes, Motley Fool, Seeking Alpha, Goldman Sachs, IEA</div>
+    <div style="margin-top: 6px;">⚠️ Tai nėra finansinis patarimas. Prieš investuodami, pasikonsultuokite su licencijuotu finansų patarėju.</div>
+    <div style="margin-top: 8px;"><a href="index.html">← Visos ataskaitos</a></div>
+  </div>
+
+</div>
+</body>
+</html>
