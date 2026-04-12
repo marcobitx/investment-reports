@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investicinės Naujienos • 2026-04-12</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #1c1510;
+      background: linear-gradient(160deg, #4a6080 0%, #2d4060 40%, #3a5070 70%, #283850 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      padding: 16px;
+    }
+    .container { max-width: 680px; margin: 0 auto; }
+    .card {
+      background: #f0f4f9;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 12px rgba(30,45,80,0.14);
+      border: 1px solid #c4d0e0;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(30,45,80,0.18); }
+    .card-title { font-size: 16px; font-weight: 700; color: #1e3a6e; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .card-subtitle { font-size: 13px; color: #5a4a35; margin-bottom: 10px; }
+    h1 { color: #1e3a6e; font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+    .header { background: #1c1510; color: #fff; padding: 24px; border-radius: 12px; margin-bottom: 16px; text-align: center; }
+    .header h1 { color: #fff; font-size: 24px; }
+    .header .date { color: #f59e0b; font-weight: 600; font-size: 14px; }
+    .logo-list { display: flex; flex-direction: column; gap: 10px; }
+    .logo-item { display: flex; align-items: center; gap: 12px; padding: 10px; background: #eaf0f8; border-radius: 8px; border: 1px solid #c4d0e0; }
+    .logo-img { width: 36px; height: 36px; border-radius: 9px; object-fit: contain; background: #fff; }
+    .ticker { font-weight: 700; color: #1e3a6e; font-size: 15px; }
+    .price { color: #5a4a35; font-size: 14px; }
+    .target { color: #16a34a; font-weight: 600; }
+    .risk { font-size: 12px; padding: 2px 8px; border-radius: 4px; }
+    .risk-1 { background: #dcfce7; color: #166534; }
+    .risk-2 { background: #fef9c3; color: #854d0e; }
+    .risk-3 { background: #fee2e2; color: #991b1b; }
+    .up { color: #16a34a; }
+    .down { color: #dc2626; }
+    .neutral { color: #d97706; }
+    .source { font-size: 11px; color: #9a8570; margin-top: 4px; }
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; }
+    .metric { background: #eaf0f8; padding: 10px 6px; border-radius: 8px; border: 1px solid #c4d0e0; }
+    .metric-value { font-weight: 700; font-size: 16px; color: #1e3a6e; }
+    .metric-label { font-size: 10px; color: #5a4a35; text-transform: uppercase; }
+    .history-card { background: #fffbeb; border: 1px solid #fde68a; }
+    .history-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #fde68a; }
+    .history-item:last-child { border-bottom: none; }
+    .opp-threat { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #e5e7eb; }
+    .opp-threat:last-child { border-bottom: none; }
+    .chart-img { width: 100%; height: auto; border-radius: 8px; margin: 8px 0; }
+    .footer { background: #283850; color: #fff; padding: 16px; border-radius: 12px; text-align: center; font-size: 12px; }
+    .footer a { color: #f59e0b; }
+    @media(max-width: 600px) { .metrics { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="date">2026 m. balandis 12 d.</div>
+      <h1>⚡ Investicinės Naujienos</h1>
+      <p>Kasdienė rinkos analizė</p>
+    </div>
+    
+    <div class="card">
+      <div class="card-title">🌍 Svarbiausios Naujienos</div>
+      <div class="card-subtitle">Iranvoke dėlto — didžiausia rinkos kryptis šiais metais</div>
+      
+      <p><strong>JAV-Irano paliaubos:</strong> S&P 500 šoktelėjo +2.5%, Dow Jones +1,325 taškų (2.85%) — geriausia diena per metus. WTI nafta krito iki $94/bbl. <span class="source">Yahoo Finance, CNN</span></p><br>
+      <p><strong>Fed Sprendimas (balandis 28-29):</strong> 98% tikimybė palikti palūkanas nepakeistas. Polymarket rodo 98% "no change". <span class="source">Polymarket, CME FedWatch</span></p><br>
+      <p><strong>Rinkos nuotaikos:</strong> VIX krito iki prieškarinio lygio. Azijos rinkos stipriai kilo (Kospi +6.87%, Nikkei +5.39%). <span class="source">CNN</span></p>
+    </div>
+    
+    <div class="card">
+      <div class="card-title">📊 Analitikų Projekcijos</div>
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-value">7,600</div>
+          <div class="metric-label">GS 2026</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">12%</div>
+          <div class="metric-label">EPS augimas</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">2.6%</div>
+          <div class="metric-label">BVP augimas</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">3.0-3.25%</div>
+          <div class="metric-label">Tikėtinos palūkanos</div>
+        </div>
+      </div>
+      <p style="margin-top:12px"><strong>Goldman Sachs:</strong> S&P 500 iki 7,600 iki metų pabaigos — pagrįsta 12% EPS augimu. 6-as iš eilės ketvirtis dvigubo augimo. <span class="source">Financial Content</span></p>
+      </div>
+    
+    <div class="card">
+      <div class="card-title">🏆 Top 5 Investavimui</div>
+      <div class="logo-list">
+        <div class="logo-item">
+          <img src="https://logo.clearbit.com/meta.com" alt="META" class="logo-img">
+          <div>
+            <div class="ticker">META $612</div>
+            <div class="price">Target: $700 • <span class="up">▲ +14%</span></div>
+            <div class="source">Muse Spark AI pristatymas</div>
+          </div>
+          <span class="risk risk-2">TECH</span>
+        </div>
+        <div class="logo-item">
+          <img src="https://logo.clearbit.com/nvidia.com" alt="NVDA" class="logo-img">
+          <div>
+            <div class="ticker">NVDA $177</div>
+            <div class="price">Target: $220 • <span class="up">▲ +24%</span></div>
+            <div class="source">HPM paklausa auga</div>
+          </div>
+          <span class="risk risk-1">TECH</span>
+        </div>
+        <div class="logo-item">
+          <img src="https://logo.clearbit.com/palantir.com" alt="PLTR" class="logo-img">
+          <div>
+            <div class="ticker">PLTR $148</div>
+            <div class="price">Target: $200 • <span class="up">▲ +35%</span></div>
+            <div class="source">Enterprise AI lyderis</div>
+          </div>
+          <span class="risk risk-2">TECH</span>
+        </div>
+        <div class="logo-item">
+          <img src="https://logo.clearbit.com/micron.com" alt="MU" class="logo-img">
+          <div>
+            <div class="ticker">MU $365</div>
+            <div class="price">Target: $550 • <span class="up">▲ +50%</span></div>
+            <div class="source">HBM, DRAM paklausa</div>
+          </div>
+          <span class="risk risk-2">TECH</span>
+        </div>
+        <div class="logo-item">
+          <img src="https://logo.clearbit.com/jpmorgan.com" alt="JPM" class="logo-img">
+          <div>
+            <div class="ticker">JPM $210</div>
+            <div class="price">Target: $250 • <span class="up">▲ +19%</div>
+            <div class="source">Geriausia vertė bankų sektoriuje</div>
+          </div>
+          <span class="risk risk-1">FUNDAMENTAL</span>
+        </div>
+      </div>
+      <p style="margin-top:12px;font-size:13px;color:#5a4a35">Alt: Palo Alto Networks ($200 tikslas, +17%), Visa ($410, +36%), Mastercard <span class="source">JPMorgan, Morgan Stanley, Deutsche Bank</span></p>
+    </div>
+  
+    <div class="card" style="background:#fff8f8;border-color:#fecaca">
+      <div class="card-title">⛔ Top 5 Kur Vengti</div>
+      <div class="logo-list">
+        <div class="logo-item" style="background:#fff8f8">
+          <img src="https://logo.clearbit.com/exxon.com" alt="XOM" class="logo-img">
+          <div>
+            <div class="ticker">XOM $110</div>
+            <div class="price"><span class="down">▼ Naftos kritimas</span></div>
+            <div class="source">WTI -16% po paliaubų</div>
+          </div>
+          <span class="risk risk-3">RIZIKA</span>
+        </div>
+        <div class="logo-item" style="background:#fff8f8">
+          <img src="https://logo.clearbit.com/chevron.com" alt="CVX" class="logo-img">
+          <div>
+            <div class="ticker">CVX $145</div>
+            <div class="price"><span class="down">▼ Naftos kritimas</span></div>
+            <div class="source">Brent krito iki $98</div>
+          </div>
+          <span class="risk risk-3">RIZIKA</span>
+        </div>
+        <div class="logo-item" style="background:#fff8f8">
+          <img src="https://logo.clearbit.com/tesla.com" alt="TSLA" class="logo-img">
+          <div>
+            <div class="ticker">TSLA $360</div>
+            <div class="price"><span class="down">▼ -5.5% šiandien</span></div>
+            <div class="source">Pardavimai lūžta</div>
+          </div>
+          <span class="risk risk-3">RIZIKA</span>
+        </div>
+        <div class="logo-item" style="background:#fff8f8">
+          <img src="https://logo.clearbit.com/slack.com" alt="NOW" class="logo-img">
+          <div>
+            <div class="ticker">NOW (ServiceNow)</div>
+            <div class="price"><span class="neutral">Pervertinta</span></div>
+            <div class="source">P/S 18x, augimas lėtėja</div>
+          </div>
+          <span class="risk risk-2">RIZIKA</span>
+        </div>
+        <div class="logo-item" style="background:#fff8f8">
+          <img src="https://logo.clearbit.com/bofa.com" alt="BAC" class="logo-img">
+          <div>
+            <div class="ticker">BAC $34</div>
+            <div class="price"><span class="neutral">Silpnas</span></div>
+            <div class="source">JPM pranašesnis</div>
+          </div>
+          <span class="risk risk-2">RIZIKA</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card history-card">
+      <div class="card-title">📜 Istorinės Paralėlės</div>
+      <div class="history-item">
+        <span>1996</span>
+        <span>S&P +20.3%. 1999 tech.labai pramušė iki 2000</span>
+      </div>
+      <div class="history-item">
+        <span>2006</span>
+        <span>Po Irako karo: S&P +15.6% iki metų pabaigos</span>
+      </div>
+      <div class="history-item">
+        <span>2016</span>
+        <span>Brexit + volatilumas: S&P +11% po konsolidacijos</span>
+      </div>
+      <div class="history-item">
+        <span>2016 kovas</span>
+        <span>Panašus: S&P -4.8% YTD, tada rally</span>
+      </div>
+      <p style="margin-top:10px;font-size:12px;color:#9a8570">Šiandienos situacija artima 2016 m. — po didelio volatilumo rinkos konsolidavosi. 1996-1999 tech.hmatas primena AI boomą. <span class="source">Investing.com, Nasdaq</span></p>
+    </div>
+    
+    <div class="card">
+      <div class="card-title">🟢🔴 Galimybės ir Grėsmės</div>
+      <div class="opp-threat">
+        <span>✅ Gerinti</span>
+        <span>Geopolitinė įtampa mažėja</span>
+      </div>
+      <div class="opp-threat">
+        <span>✅ Gerinti</span>
+        <span>Fed extensions tikėtinas vasarą</span>
+      </div>
+      <div class="opp-threat">
+        <span>✅ Gerinti</span>
+        <span>EPS augimas 12% — 6-as ketvirtis</span>
+      </div>
+      <div class="opp-threat">
+        <span>⚠️ Saugoti</span>
+        <span>Iranas: paliaubos tik 2 sav</span>
+      </div>
+      <div class="opp-threat">
+        <span>⚠️ Saugoti</span>
+        <span>Inflation: nafta vėl kiltų</span>
+      </div>
+      <div class="opp-threat">
+        <span>⚠️ Saugoti</span>
+        <span>FED paliaubos gali būti hawkish</span>
+      </div>
+    </div>
+    
+    <div style="text-align:center;margin:16px 0">
+      <img src="https://chart.finviz.com/chart.ashx?t=SPY&p=d1w" alt="S&P 500" class="chart-img" style="max-width:300px">
+    </div>
+    
+    <div class="footer">
+      <p>Parengta su ⚡ Marco</p>
+      <p><a href="https://marcobitx.github.io/investment-reports/investment-2026-04-12.html">Pilna ataskaita čia</a></p>
+      <p style="color:#9a8570;margin-top:8px">Šaltiniai: Yahoo Finance, CNN, Bloomberg, Reuters, Goldman Sachs, JPMorgan, Morgan Stanley, CME FedWatch, Polymarket</p>
+    </div>
+  </div>
+</body>
+</html>
