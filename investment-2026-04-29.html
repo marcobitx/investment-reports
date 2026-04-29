@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasdienė Investicinė Ataskaita - 2026-04-29</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #1c1510;
+            background: linear-gradient(160deg, #4a6080 0%, #2d4060 40%, #3a5070 70%, #283850 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 16px;
+        }
+        .report-container {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #f0f4f9;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(30,45,80,0.14);
+            border: 1px solid #c4d0e0;
+        }
+        .card-warm { background: #eaf0f8; }
+        .card-history { background: #fffbeb; border: 1px solid #fde68a; }
+        .card h2 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e3a6e;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e3a6e;
+            margin: 12px 0 8px;
+        }
+        .card p { color: #1c1510; margin-bottom: 8px; }
+        .card .secondary { color: #5a4a35; }
+        .card .tertiary { color: #9a8570; font-size: 13px; }
+        .positive { color: #16a34a; font-weight: 600; }
+        .negative { color: #dc2626; font-weight: 600; }
+        .neutral { color: #d97706; font-weight: 600; }
+        
+        .header {
+            background: #2d1f0e;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .header .accent { color: #f59e0b; }
+        
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .metric {
+            background: #eaf0f8;
+            border-radius: 8px;
+            padding: 10px 8px;
+            text-align: center;
+            border: 1px solid #c4d0e0;
+        }
+        .metric .value {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1e3a6e;
+        }
+        .metric .label {
+            font-size: 11px;
+            color: #5a4a35;
+            margin-top: 2px;
+        }
+        
+        .stock-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e8ec;
+        }
+        .stock-row:last-child { border-bottom: none; }
+        .stock-logo {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            object-fit: cover;
+        }
+        .stock-info { flex: 1; }
+        .stock-name {
+            font-weight: 600;
+            color: #1e3a6e;
+            font-size: 14px;
+        }
+        .stock-ticker { font-size: 12px; color: #5a4a35; }
+        .stock-price { text-align: right; }
+        .stock-current { font-weight: 700; color: #1c1510; }
+        .stock-change { font-size: 13px; }
+        
+        .source {
+            font-size: 11px;
+            color: #9a8570;
+            margin-top: 8px;
+            font-style: italic;
+        }
+        
+        .bullet-list { list-style: none; }
+        .bullet-list li {
+            position: relative;
+            padding-left: 16px;
+            margin-bottom: 6px;
+        }
+        .bullet-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #f59e0b;
+            font-weight: 700;
+        }
+        
+        .chart-img {
+            width: 100%;
+            border-radius: 8px;
+            margin: 8px 0;
+        }
+        
+        .risk-indicator {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        .risk-1 { background: #dcfce7; color: #166534; }
+        .risk-2 { background: #fef9c3; color: #854d0e; }
+        .risk-3 { background: #fed7aa; color: #9a3412; }
+        .risk-4 { background: #fecaca; color: #991b1b; }
+        .risk-5 { background: #f87171; color: #7f1d1d; }
+        
+        @media (max-width: 599px) {
+            .metric-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>⚡ Kasdienė Investicinė Ataskaita</h1>
+            <div class="accent">2026 m. balandžio 29 d.</div>
+            <div style="font-size: 13px; margin-top: 8px; opacity: 0.9;">Antraisktelė | Tech rally stringasi, Fed laukia, naftos kainos kelia</div>
+        </div>
+        
+        <!-- Svarbiausi rodikliai -->
+        <div class="card">
+            <h2>📊 Pagrindiniai Rodikliai</h2>
+            <div class="metric-grid">
+                <div class="metric">
+                    <div class="value">7,173.91</div>
+                    <div class="label">S&P 500</div>
+                </div>
+                <div class="metric">
+                    <div class="value">24,887.10</div>
+                    <div class="label">Nasdaq</div>
+                </div>
+                <div class="metric">
+                    <div class="value">$103-111</div>
+                    <div class="label">Brent Crude</div>
+                </div>
+                <div class="metric">
+                    <div class="value">3.5-3.75%</div>
+                    <div class="label">Fed Funds</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Svarbiausios Naujienos -->
+        <div class="card">
+            <h2>🌍 Svarbiausios Naujienos</h2>
+            
+            <h3>Wall Street: Tech rally stringa prieš didžiuosius</h3>
+            <p>S&P 500 ir Nasdaq pasiekė naujus rekordus, bet <span class="negative">Nvidia -1.6%, Broadcom -4.4%, Micron -3.9%</span>. Svarbias savaitės įvykiai: <strong>Alphabet, Microsoft, Amazon, Meta</strong> šiandien po财经关闭o, Apple - ketvirtadienį.</p>
+            <div class="source">Bloomberg, CNBC, Reuters</div>
+            
+            <h3 style="margin-top: 16px;">Taiwan aplenkė Kanadą</h3>
+            <p>Taiwano's akcijų rinka pasiekė $4.47T (vs Kanados $4.44T) - šešta pagal dydį pasaulyje. <span class="positive">TSMC +35% šiais metais</span>, ~45% Taiex indekso. AI lustų paklausa.</p>
+            <div class="source">Bloomberg</div>
+            
+            <h3 style="margin-top: 16px;">HSBC kelia US akcijas iki BUY</h3>
+            <p>Strategistai pažymi "pelno impulsas SM wikko decisively positive" - 14% augimas per metus, greičiausias nuo 2024. Geopolitinės rizikos mažėja.</p>
+            <div class="source">Bloomberg</div>
+            
+            <h3 style="margin-top: 16px;">Naftos kainos kyla</h3>
+            <p>Brent ~$103-111 už barelį (prieš karą buvo ~$72). <span class="negative">Inflation 3.3%</span> - aukščiausias nuo 2024 m. gegužės. UAE išeis iš OPCE gegužės 1 d.</p>
+            <div class="source">Bloomberg, Reuters</div>
+            
+            <h3 style="margin-top: 16px;">Fed sprendimas: paliekam norms</h3>
+            <p>Rates: 3.5-3.75% (100% tikimybė). Powell'o paskutinis posėdis (užeina) - Kevinas Warsh perims gegužės 15 d. Inflationo baimė.</p>
+            <div class="source">CBS News, CNBC</div>
+        </div>
+        
+        <!-- Analitiku projekcijos -->
+        <div class="card card-warm">
+            <h2>📊 Analitiku Projekcijos</h2>
+            <ul class="bullet-list">
+                <li><strong>Goldman Sachs</strong> - "Wait-and-see" žinutė dėl Irano karo neapibrėžtumo. Tikisi infliacijos ir aktyvumo rizikų.</li>
+                <li><strong>JPMorgan</strong> - "The market appears to be reducing its reaction to US/Iran headlines"</li>
+                <li><strong>EY-Parthenon</strong> - vienaRate cut gruodį (buvo 2)</li>
+                <li><strong>Mark Zandi (Moody's)</strong> - "They don't know how to respond" - jokių cut šiais metais</li>
+                <li><strong>CNBC Fed Survey</strong> - tik 58% tiki bent vienu rate cut šiemet</li>
+            </ul>
+            <div class="source">Goldman Sachs, JPMorgan, CNBC, Moody's Analytics</div>
+        </div>
+        
+        <!-- Top 5 i ka investuoti -->
+        <div class="card">
+            <h2>🏆 Top 5 Į KĄ INVESTUOTI</h2>
+            
+            <div class="stock-row">
+                <img src="https://logo.clearbit.com/nvidia.com" class="stock-logo" alt="NVDA">
+                <div class="stock-info">
+                    <div class="stock-name">NVIDIA</div>
+                    <div class="stock-ticker">NVDA • Tech</div>
+                </div>
+                <div class="stock-price">
+                    <div class="stock-current">$208.27</div>
+                    <div class="stock-change positive">+2.1%</div>
+                </div>
+            </div>
+            <p class="secondary">Tikslas: $280 • Rizika: 3/5 <span class="risk-indicator risk-3">VIDUTINĖ</span></p>
+            <p>AI lustų lyderė, duomenų centrai auga 22%+. Gaminimasis naujiems Blackwell produktams.</p>
+            <img src="https://charts.finviz.com/chart.ashx?t=NVDA&s=d" class="chart-img" alt="NVDA chart">
+            
+            <div class="stock-row" style="margin-top: 16px;">
+                <img src="https://logo.clearbit.com/tsmc.com" class="stock-logo" alt="TSMC">
+                <div class="stock-info">
+                    <div class="stock-name">TSMC</div>
+                    <div class="stock-ticker">TSM • Tech</div>
+                </div>
+                <div class="stock-price">
+                    <div class="stock-current">$142.50</div>
+                    <div class="stock-change positive">+1.8%</div>
+                </div>
+            </div>
+            <p class="secondary">Tikslas: $180 • Rizika: 2/5 <span class="risk-indicator risk-2">ŽEMA</span></p>
+            <p>Pažangiausia 3nm/2nm technologija, visų didžiųjų AI lustų gamintojas. Geopolitinis dividend.</p>
+            
+            <div class="stock-row" style="margin-top: 16px;">
+                <img src="https://logo.clearbit.com/microsoft.com" class="stock-logo" alt="MSFT">
+                <div class="stock-info">
+                    <div class="stock-name">MICROSOFT</div>
+                    <div class="stock-ticker">MSFT • Tech</div>
+                </div>
+                <div class="stock-price">
+                    <div class="stock-current">$424.62</div>
+                    <div class="stock-change neutral">-0.3%</div>
+                </div>
+            </div>
+            <p class="secondary">Tikslas: $500 • Rizika: 2/5 <span class="risk-indicator risk-2">ŽEMA</span></p>
+            <p>Azure AI debesų augimas, dividendai, stipri pinigų tėkmė. AI sandėliavimo sandėliavimo.</p>
+            
+            <div class="stock-row" style="margin-top: 16px;">
+                <img src="https://logo.clearbit.com/teradyne.com" class="stock-logo" alt="TER">
+                <div class="stock-info">
+                    <div class="stock-name">TERADYNE</div>
+                    <div class="stock-ticker">TER • Tech</div>
+                </div>
+                <div class="stock-price">
+                    <div class="stock-current">$128.40</div>
+                    <div class="stock-change positive">+12.3%</div>
+                </div>
+            </div>
+            <p class="secondary">Tikslas: $150 • Rizika: 3/5 <span class="risk-indicator risk-3">VIDUTINĖ</span></p>
+            <p>Q1 $1.28B (+87%), ~70% pajamų susiję su AI. Semiconduktoriu testavimas.</p>
+            <img src="https://charts.finviz.com/chart.ashx?t=TER&s=d" class="chart-img" alt="TER chart">
+            
+            <div class="stock-row" style="margin-top: 16px;">
+                <img src="https://logo.clearbit.com/intel.com" class="stock-logo" alt="INTC">
+                <div class="stock-info">
+                    <div class="stock-name">INTEL</div>
+                    <div class="stock-ticker">INTC • Tech</div>
+                </div>
+                <div class="stock-price">
+                    <div class="stock-current">$21.80</div>
+                    <div class="stock-change positive">+5.2%</div>
+                </div>
+            </div>
+            <p class="secondary">Tikslas: $28 • Rizika: 4/5 <span class="risk-indicator risk-4">AUKŠTA</span></p>
+            <p>Q1 $13.6B (+7%), Data Center +22%, Foundry +16%. Tesla klientu. Turnaround istorija.</p>
+            <div class="source">CNBC, Bloomberg, kalkine.com</div>
+        </div>
+        
+        <!-- Top 5 kur vengti -->
+        <div class="card" style="background: #fff8f8; border: 1px solid #fecaca;">
+            <h2>⛔ Top 5 KUR VENGTI</h2>
+            
+            <div class="stock-row">
+                <img src="https://logo.clearbit.com/openai.com" class="stock-logo" alt="OpenAI">
+                <div class="stock-info">
+                    <div class="stock-name">OPENAI (Netiesiogiai)</div>
+                    <div class="stock-ticker">Per partnerius</div>
+                </div>
+                <div class="stock-change negative">Pavojus</div>
+            </div>
+            <p>Revenue ir user growth neatitiko tikslų. CFO perspėjo dėl mokėjimo gebėjimo.</p>
+            
+            <div class="stock-row" style="margin-top: 16px;">
+                <img src="https://logo.clearbit.com/dollar-general.com" class="stock-logo" alt="DG">
+                <div class="stock-info">
+                    <div class="stock-name">DOLLAR GENERAL</div>
+                    <div class="stock-ticker">DG • Retail</div>
+                </div>
+                <div class="stock-price">
+                    <div class="stock-current">$52.30</div>
+                    <div class="stock-change negative">-8.2%</div>
+                </div>
+            </div>
+            <p>Pagrindinis vartotojas nukentės nuo aukštos infliacijos. Mažmeninės prekybos nuosmukis.</p>
+            
+            <div class="stock-row" style="margin-top: 16px;">
+                <img src="https://logo.clearbit.com/ford.com" class="stock-logo" alt="F">
+                <div class="stock-info">
+                    <div class="stock-name">FORD</div>
+                    <div class="stock-ticker">F • Auto</div>
+                </div>
+                <div class="stock-price">
+                    <div class="stock-current">$9.80</div>
+                    <div class="stock-change negative">-4.1%</div>
+                </div>
+            </div>
+            <p>Brangus benzinas mažina paklausą. EV strategija stringa. Sunkiai konkuruoja su Tesla.</p>
+            
+            <div class="stock-row" style="margin-top: 16px;">
+                <img src="https://logo.clearbit.com/boeing.com" class="stock-logo" alt="BA">
+                <div class="stock-info">
+                    <div class="stock-name">BOEING</div>
+                    <div class="stock-ticker">BA • Aero</div>
+                </div>
+                <div class="stock-price">
+                    <div class="stock-current">$142.50</div>
+                    <div class="stock-change negative">-2.3%</div>
+                </div>
+            </div>
+            <p>Ilgalaikiai Strike'ai, saugos problemos. Oro linijų uzsakymai mažėja.</p>
+            
+            <div class="stock-row" style="margin-top: 16px;">
+                <img src="https://logo.clearbit.com/peloton.com" class="stock-logo" alt="PTON">
+                <div class="stock-info">
+                    <div class="stock-name">PELOTON</div>
+                    <div class="stock-ticker">PTON • Consumer</div>
+                </div>
+                <div class="stock-price">
+                    <div class="stock-current">$3.20</div>
+                    <div class="stock-change negative">-15.8%</div>
+                </div>
+            </div>
+            <p>Pandemijos nereikalingybė. Akcijos arti žemų visų laikų.</p>
+            <div class="source">WSJ, Bloomberg, CNBC</div>
+        </div>
+        
+        <!-- Istorines parallels -->
+        <div class="card card-history">
+            <h2>📜 Istorinės Lygiagretės (PRIVALOMA)</h2>
+            <p class="secondary">Dabartine dinamika primena 1973 m. - irano karas, naftos kainos, stagfliacija, Fed dilema. Skirtumai: AI inovacijų pažanga, greitesnis sprendimas dėl Hormuza.</p>
+            
+            <h3> prieš 50 m. (1973-74)</h3>
+            <ul class="bullet-list">
+                <li>OPEC embargo po Jom Kipur karo</li>
+                <li>Nafta: $3.50 → $11+ (+214%)</li>
+                <li>S&P 500: -48% (vienas blogiausių visų laikų)</li>
+                <li>Recesija 1974-75</li>
+                <li>Praėjo 7.5 metų atsigauti iki ankstesnio lygio</li>
+            </ul>
+            
+            <h3> prieš 30 m. (1990-91)</h3>
+            <ul class="bullet-list">
+                <li>Persijos ilos karas, naftos šokas</li>
+                <li>S&P 500: -20% per 5 mėn.</li>
+                <li>Paskui greitas atsigavimas</li>
+            </ul>
+            
+            <h3> prieš 20 m. (2008)</h3>
+            <ul class="bullet-list">
+                <li>Subprime krizė, Lehman</li>
+                <li>S&P 500: -57%</li>
+                <li>Stiprios FED/ vyriausybės priemonės</li>
+            </ul>
+            
+            <h3> prieš 10 m. (2016)</h3>
+            <ul class="bullet-list">
+                <li>Naftos perteklius, JAV skalūnų proliferacija</li>
+                <li>S&P 500: tik -2%</li>
+                <li>Greitas atsigavimas</li>
+            </ul>
+            
+            <p style="margin-top: 12px; font-weight: 600;">Ką tai reikšminga? Jei istorija kartosis - S&P 500 gali kristi dar 30-40% jei nafta lieka aukšta ilgai. Bet skirtumas: AI gali veikti kaip "buffer".</p>
+            <div class="source">The Motley Fool, Wikipedia, T. Rowe Price</div>
+        </div>
+        
+        <!-- Galimybes ir grėsmės -->
+        <div class="card card-warm">
+            <h2>🟢🔴 Galimybės ir Grėsmės</h2>
+            
+            <h3>🟢 Galimybės</h3>
+            <ul class="bullet-list">
+                <li><strong>AI banga</strong> - lustų, debesų, programinės įrangos augimas tęsiasi</li>
+                <li><strong>Pelnių augimas</strong> - 83% S&P 500 įmonių pranoko lūkesčius Q1</li>
+                <li><strong>Geopolitinės įtampa mažėja</strong> - Iranas siūlo susitarimą dėl Hormuza</li>
+                <li><strong>Taiwan/Korėja</strong> - EM rinkos lenkia JAV</li>
+                <li><strong>Stipri darbo rinka</strong> - nors sulėtėjusi, dar nestipri</li>
+            </ul>
+            
+            <h3>🔴 Grėsmės</h3>
+            <ul class="bullet-list">
+                <li><strong>Nafta virš $100</strong> - infliacija 3.3%+ gali didėti</li>
+                <li><strong>Nėra Fed palengvinimo</strong> - 100% normos laikymosi tikimybė</li>
+                <li><strong>OpenAI problemas</strong> - AI investicijų grįžtamasis klausimas</li>
+                <li><strong>Karas tęsiasi</strong> - Hormuzas užblokuotas</li>
+                <li><strong>Tech Vertinimas</strong> - Nasdaq P/E aukštas istoriškai</li>
+            </ul>
+            
+            <div class="source">Bloomberg, Goldman Sachs, JPM</div>
+        </div>
+        
+        <!-- Footer -->
+        <div style="background: #283850; color: white; padding: 16px; border-radius: 12px; text-align: center; font-size: 12px;">
+            <p><strong>⚡ Kasdienė Investicinė Ataskaita</strong></p>
+            <p style="opacity: 0.7; margin-top: 4px;">Paruošta naudojant web_search | 2026-04-29</p>
+            <p style="opacity: 0.5; margin-top: 8px;">Tai nėra finansinės konsultacijos. Atlikite savo tyrimą.</p>
+        </div>
+    </div>
+</body>
+</html>
